@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
 {
     ArrayList<Item> itemArrayList = new ArrayList<> ();
     ArrayList<Item> brandList = new ArrayList<> ();
+    ToggleButton toggleButton;
     HomeCategoryAdapter homeCategoryAdapter;
     HomeBrandAdapter homeBrandAdapter;
     Toolbar toolbar;
@@ -47,11 +49,12 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
 
         getBrandList();
         recyclerView2 = findViewById (R.id.rvBrands);
-        homeBrandAdapter = new HomeBrandAdapter(brandList);
-        Log.d("LIST", brandList.toString());
+        homeBrandAdapter = new HomeBrandAdapter(brandList, this);
         recyclerView2.setAdapter (homeBrandAdapter);
         recyclerView2.setLayoutManager (new LinearLayoutManager  (this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView2.setHasFixedSize (true);
+
+
 
         recyclerView = findViewById (R.id.rvHome);
         homeCategoryAdapter = new HomeCategoryAdapter (this, getItemArrayList ());
@@ -120,5 +123,6 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         homeCategoryAdapter.setFilter (newList);
         return true;
     }
+
 
 }

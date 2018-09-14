@@ -19,12 +19,21 @@
             android:orientation="vertical"
             android:padding="5dp">
 
+            <ToggleButton
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:textOn=""
+                android:textOff=""
+                android:id="@+id/toggle"
+                android:background="@drawable/toggle"/>
+
+
             <ImageView
                 android:id="@+id/ivBrHorImg"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:background="#FFFFFF"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop" />/*
 
         </LinearLayout>
 

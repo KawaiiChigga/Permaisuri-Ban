@@ -1,11 +1,15 @@
 package cv.sunwell.permaisuriban.modules.main.home.category;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -18,10 +22,11 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
 {
 
     ArrayList<Item> brandItem = new ArrayList<> ();
-
-    public HomeBrandAdapter (ArrayList<Item> _alFavouriteItem)
+    Context context;
+    public HomeBrandAdapter (ArrayList<Item> _alFavouriteItem, Context context)
     {
         this.brandItem = _alFavouriteItem;
+        this.context = context;
     }
 
     @NonNull
@@ -29,7 +34,8 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
     public HomeBrandAdapter.MyViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType)
     {
         View view = LayoutInflater.from (parent.getContext ()).inflate (R.layout.activity_home_category_brand, parent, false);
-        return new HomeBrandAdapter.MyViewHolder (view);
+
+        return new HomeBrandAdapter.MyViewHolder (view, context);
     }
 
     @Override
@@ -45,15 +51,28 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
         return brandItem.size ();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener
     {
         ImageView brandImg;
-
-        public MyViewHolder (View itemView)
+        ToggleButton toggleButton;
+        Context context;
+        public MyViewHolder (View itemView, Context context)
         {
             super (itemView);
             brandImg = itemView.findViewById (R.id.ivBrHorImg);
+            toggleButton = itemView.findViewById (R.id.toggle);
+            toggleButton.setOnCheckedChangeListener(this);
+            this.context = context;
+        }
 
+        @Override
+        public void onCheckedChanged(CompoundButton compound, boolean isChecked) {
+            if(isChecked){
+                Toast.makeText(context, "Checked", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(context,"UnChecked", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
