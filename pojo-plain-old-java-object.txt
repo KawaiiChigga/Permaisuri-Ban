@@ -1,0 +1,4 @@
+https://github.com/ar-android/BelajarOOP/wiki/POJO-(Plain-Old-Java-Object)
+
+Di java POJO (Plain Old Java Object) adalah sebuah object yang berdiri sendiri tidak memiliki ketergantungan dengan class lain atau tidak perlu untuk meng-extends kelas lain. POJO ini sendiri sering digunakan sebagai model untuk sebuah data tertentu. Berikut ini adalah hal - hal yang perlu di ketahui mengenai POJO ini.
+

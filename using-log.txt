@@ -1,0 +1,25 @@
+public void ocLoginNormal (View _view)
+            {
+                Log.d ("COBA", etUsername.getText ().toString ());
+            }
+
+
+@Override
+                        public void onErrorResponse (VolleyError error)
+                        {
+                            try {
+                                String body = new String (error.networkResponse.data, "UTF-8");
+                                Log.e("Body", "Body: " + body);
+                            }
+                            catch (Exception e) {
+                                Log.e("Body", e.getMessage ());
+                                e.printStackTrace ();
+                            }
+
+                            Toast.makeText (LoginActivity.this,"Error",Toast.LENGTH_LONG).show ();
+                            error.printStackTrace ();
+                        }
+
+
+item.getCategory().toLowerCase() == "passenger"
+item.getCategory().toLowerCase().equals("passenger")

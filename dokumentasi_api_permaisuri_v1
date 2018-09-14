@@ -1,0 +1,819 @@
+Format response untuk secara umum
+
+
+{
+	"status" :				// berupa string "successful" atau "error"
+	"totalItems" :			// berupa angka untuk informasi total resource keseluruhan muncul hanya bila status "successful"
+	"totalPages" :			// berupa angka untuk informasi total halaman keseluruhan muncul hanya bila status "successful"
+	"data" :				// berupa response untuk data yang dibutuhkan berupa list muncul hanya bila status "successful"
+	"errorCode" : 			// berupa kode error hanya bila status "error"
+	"errorMessage" : 		// berupa pesan error hanya bila status "error"
+}
+
+Untuk method GET bisa dicantumkan parameter:
+$paging.page  		// untuk mengambil data pada halaman tertentu
+$paging.size 		// untuk menentukan jumlah item perhalaman 
+
+
+* Request data adalah data json yang harus dikirim
+* Query parameter adalah parameter yang dicantumkan di URL
+* Response data adalah objek untuk attribute bernama "data" di atas
+
+* Untuk sekuriti, setelah melakukan login, masukan token yang didapatkan dari hasil login ke header Authorization dengan nilai Bearer + token
+* Beberapa operasi hanya untuk user dengan tipe tertentu ( Customer, Admin, dll ) atau hanya untuk resource milik user yang sedang login.
+
+
+------------------------------------------------------------------------------------------------------------------------------
+1. LOGIN
+----------------
+
+.............................................................
+
+URL: http://139.59.101.119:8080/permaisuri/resources/login
+Method: POST
+Request Data :
+{
+	"userName"	: 	"user",  	       // required
+	"pwd"		: 	"12345"			   // required
+}
+Response Data :
+{
+	"systemId"			: 	10,
+    "firstName"			: 	"Nama",
+    "lastName"			: 	"Belakang",
+    "email"				: 	"example@yahoo.com",
+    "address"			: 	"Jalan ex 123",
+	"userCredential"	: 	{
+	    "systemId": 1,
+	    "userName": "Admin",
+	},
+    "token" 			: 	"--------------"
+}
+
+................................................................
+
+------------------------------------------------------------------------------------------------------------------------------
+
+2. CUSTOMERS
+URL: http://139.59.101.119:8080/permaisuri/resources/customers
+--------------------------
+
+......................................................................
+
+Method: GET
+Query parameters :
+(
+	- systemId
+	- email
+)
+Response Data :
+{
+	[
+		"systemId"			: 	10,
+	    "firstName"			: 	"Nama",
+	    "lastName"			: 	"Belakang",
+	    "email"				: 	"example@yahoo.com",
+	    "address"			: 	"Jalan ex 123",
+	    "birthDate"			:	"1980-01-22",
+	    "phone":			:	"1122334455",
+	    "citizenId"			:	"141414141",
+	    "citizenIdType"		:	"KTP"
+		"userCredential"	: 	{
+		    "systemId": 10,
+		    "userName": "Admin",
+		}
+	]
+}
+
+.........................................................................
+
+Method: POST
+Request parameters :
+{
+	"firstName"			: 	"Nama",						// required
+	"lastName"			: 	"Belakang",					// required
+	"email"				: 	"myname@yahoo.com",			// required
+	"address"			: 	"Jalan MMM 123",			// required
+	"birthDate"			:	"1980-01-22",				// required
+    "phone":			:	"1122334455",				// required
+    "citizenId"			:	"141414141",				// required
+    "citizenIdType"		:	"KTP",						// required
+	"userCredential"	: 	{							// required
+		"userName": "myname",							// required
+		"pwd": "12345"									// required
+	}
+}
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+..........................................................................
+
+Method: PUT
+Request parameters :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+..............................................................................
+
+Method: DELETE
+Query parameters :
+(
+	- systemId				//required
+)
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+............................................................................
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+3. SALES OFFICERS
+URL: http://139.59.101.119:8080/permaisuri/resources/salesofficers
+--------------------------
+
+// Operasinya (GET, POST, PUT, DELETE) sama dengan yang customer
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+4. CATEGORY
+URL: http://139.59.101.119:8080/permaisuri/resources/categories
+--------------------------
+
+......................................................................
+
+Method: GET
+Query parameters :
+(
+	systemId
+	name
+	code
+)
+Response Data :
+{
+	[
+		{
+			"systemId"	: 	1,
+	        "code"		: 	"BRU",
+	        "name"		: 	"Biru Langit",
+	        "memo"		: 	"Nothing"
+        }
+	]
+}
+
+.........................................................................
+
+Method: POST
+Request parameters :
+{
+	"code"	: 	"BRU",
+    "name"	: 	"Biru Langit",
+    "memo"	: 	"Nothing"
+}
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+..........................................................................
+
+Method: PUT
+Request parameters :
+{
+	"systemId"	: 	1,
+    "code"		: 	"BRU",
+    "name"		: 	"Biru Langit",
+    "memo"		: 	"Nothing"
+}
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+..............................................................................
+
+Method: DELETE
+Query parameters :
+(
+	- systemId				//required
+)
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+............................................................................
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+5. MERK
+URL: http://139.59.101.119:8080/permaisuri/resources/merks
+--------------------------
+
+......................................................................
+
+Method: GET
+Query parameters :
+(
+	systemId
+	name
+)
+Response Data :
+{
+	[
+		{
+			"systemId"			: 	1,
+	        "name"				: 	"Cahaya",
+	        "manufacturer"		: 	"Manufacturer"
+        }
+	]
+}
+
+.........................................................................
+
+Method: POST
+Request parameters :
+{
+    "name"	: 	"Cahaya",
+    "memo"	: 	"Manufacturer"
+}
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+..........................................................................
+
+Method: PUT
+Request parameters :
+{
+	"systemId"	: 	1,
+    "name"		: 	"Cahaya",
+    "memo"		: 	"manufacturer"
+}
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+..............................................................................
+
+Method: DELETE
+Query parameters :
+(
+	- systemId				//required
+)
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+............................................................................
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+6. ITEM
+URL: http://139.59.101.119:8080/permaisuri/resources/items
+--------------------------
+
+......................................................................
+
+Method: GET
+Query parameters :
+(
+	systemId
+	name
+	categoryId
+)
+Response Data :
+{
+	[
+		{
+            "systemId"		: 	10,
+            "name"			: 	"Topeng",
+            "memo"			: 	"Catatan",
+            "active"		: 	true,
+            "merk"			: 	"Merk",
+            "metric"		: 	"Pcs",
+            "code"			: 	"TPG",
+            "sku"			: 	""
+            "sellPrices": [
+                {
+                    "systemId"		: 	1,
+                    "price"			: 	11000,
+                    "profitFactor"	: 	0.1,
+                    "name"			: 	"Normal",
+                    "memo"			: 	"",
+                    "passworded"	: 	false,
+                    "useByDefault"	: 	false
+                },
+                {
+                    "systemId"		: 	2,
+                    "price"			: 	1200,
+                    "profitFactor"	: 	0,
+                    "name"			: 	"Special",
+                    "memo"			: 	"",
+                    "passworded"	: 	false,
+                    "useByDefault"	: 	false
+                }
+            ],
+            "categories": [
+                {
+                    "systemId"	: 	1,
+                    "code"		: 	"BSR",
+                    "name"		: 	"Besar",
+                    "memo"		: 	"Cat"
+                },
+                {
+                    "systemId"	: 	2,
+                    "code"		: 	"KCL",
+                    "name"		: 	"Kecil",
+                    "memo"		: 	"Cat"
+                }
+            ]
+        }
+	]
+}
+
+.........................................................................
+
+Method: POST
+Request parameters :
+{
+    "name"			: 	"Topeng",			// required
+    "memo"			: 	"Catatan",			// required
+    "merk"			: 	"Merk",				// required
+    "metric"		: 	"Pcs",				// required
+    "code"			: 	"TPG",				// required
+    "sellPrices"	: 	[					// required at least one
+        {
+            "systemId"		: 	1, 			// required
+            "price"			: 	1100,		// required
+            "profitFactor"	: 	0.1			// required
+        },
+        {
+            "systemId"		: 	2, 			// required
+            "price"			: 	1200,		// required
+            "profitFactor"	: 	0.2			// required
+        }
+    ],
+    "categories": [
+        {
+            "systemId"	: 	1			// required
+        },
+        {
+            "systemId"	: 	2			// required
+        }
+    ]
+}
+
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+..........................................................................
+
+Method: PUT
+Request parameters :
+{
+    // same as post method but with additional required systemId attribute 
+}
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+..............................................................................
+
+Method: DELETE
+Query parameters :
+(
+	- systemId				//required
+)
+Response Data :
+{
+	// same as get method but only one item with additional systemId attribute
+}
+
+............................................................................
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+7. STOCK
+URL: http://139.59.101.119:8080/permaisuri/resources/stocks
+--------------------------
+
+......................................................................
+
+Method: GET
+Query parameters :
+(
+	itemId
+	warehouseId
+)
+Response Data :
+{
+	[
+        {
+            "item"			: 	"Topeng",
+            "warehouse"		: 	"Utama",
+            "batchNo"		: 	"",
+            "serialNo"		: 	"",
+            "qty"			: 	10000
+        }
+    ]
+}
+
+.........................................................................
+
+Method: POST
+Request parameters :
+{
+    "item"		: 	"Topeng",
+    "warehouse"	: 	"Utama",
+    "qty"		: 	1000
+}
+Response Data :
+{
+	// same as get method but only one item 
+}
+
+..........................................................................
+
+Method: PUT
+Request parameters :
+{
+    // same as post method 
+}
+Response Data :
+{
+	// same as get method but only one item 
+}
+
+..............................................................................
+
+Method: DELETE
+Query parameters :
+(
+	- itemId				//required
+	- warehouseId			//required
+)
+Response Data :
+{
+	// same as get method but only one item 
+}
+
+............................................................................
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+8. CART DETAIL
+URL: http://139.59.101.119:8080/permaisuri/resources/cartdetails
+--------------------------
+
+......................................................................
+
+Method: GET
+Query parameters :
+(
+	customerId
+)
+Response Data :
+{
+	[
+        {
+            "customer"	: 	10,
+            "item"		: 	"Topeng",
+            "qty"		: 	10000,
+            "reqNote"	: 	"None"
+        },
+    ]
+}
+
+.........................................................................
+
+Method: POST
+Request parameters :
+{
+    "customer"	: 	10,
+    "item"		: 	"Topeng",
+    "qty"		: 	10000,
+    "reqNote"	: 	"None"
+}
+Response Data :
+{
+	// same as get method but only one item 
+}
+
+..........................................................................
+
+Method: PUT
+Request parameters :
+{
+    // same as post method 
+}
+Response Data :
+{
+	// same as get method but only one item 
+}
+
+..............................................................................
+
+Method: DELETE
+Query parameters :
+(
+	- customerId		//required
+	- itemId			//required
+)
+Response Data :
+{
+	// same as get method but only one item 
+}
+
+............................................................................
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+9. CHECKOUT 
+URL: http://139.59.101.119:8080/permaisuri/resources/cartdetails
+--------------------------
+
+.........................................................................
+
+Method: POST
+Request parameters :
+{
+    "systemId": 1,
+}
+Response Data :
+{
+	"systemId"			: 	22,
+    "customer"			: 	14,
+    "issueDate"			: 	"2018-05-14 15:56:10",
+    "deliveryStatus"	: 	0,
+    "miscCharge"		: 	0,
+    "miscChargeMemo"	: 	"",
+    "memo"				: 	"",
+    "vat"				: 	0,
+    "vatInclusive"		: 	false,
+    "canceledStatus"	: 	0,
+    "paymentStatus"		: 	0,
+    "discount"			: 	0,
+    "vatinclusive"		: 	false
+    "items"				: 	[
+        {
+            "item"		: "Topeng",
+            "qty"		: 100,
+            "discount"	: 0,
+            "hargaJual"	: 1100
+        },
+        {
+            "item"		: "Pisang",
+            "qty"		: 250,
+            "discount"	: 400,
+            "hargaJual"	: 2500
+        }
+    ]
+}
+
+..........................................................................
+
+------------------------------------------------------------------------------------------------------------------------------
+
+10. PAYMENT 
+URL: http://139.59.101.119:8080/permaisuri/resources/payments
+--------------------------
+
+.........................................................................
+
+Method: POST
+Request parameters :
+{
+    "systemId"	: 	1,
+}
+Response Data :
+{
+	"soId"			: 	11,
+	"paymentAmount"	: 	100000,
+	"paymentDetail"	: 	"Memo",
+	"paymentType"	: 	2,
+	"noFakPajak"	: 	"3334444"
+}
+
+..........................................................................
+
+------------------------------------------------------------------------------------------------------------------------------
+
+11. SALES ORDER
+URL: http://139.59.101.119:8080/permaisuri/resources/salesorders
+--------------------------
+
+......................................................................
+
+Method: GET
+Query parameters :
+(
+	systemId,
+	customerId
+)
+Response Data :
+{
+	[
+        {
+            "systemId"			: 	22,
+		    "customer"			: 	14,
+		    "issueDate"			: 	"2018-05-14 15:56:10",
+		    "deliveryStatus"	: 	0,
+		    "miscCharge"		: 	0,
+		    "miscChargeMemo"	: 	"",
+		    "memo"				: 	"",
+		    "vat"				: 	0,
+		    "vatInclusive"		: 	false,
+		    "canceledStatus"	: 	0,
+		    "paymentStatus"		: 	0,
+		    "discount"			: 	0,
+		    "vatinclusive"		: 	false
+		    "items"				: 	[
+		        {
+		            "item"		: 	"Topeng",
+		            "qty"		: 	100,
+		            "discount"	: 	0,
+		            "hargaJual"	: 	1100
+		        },
+		        {
+		            "item"		: 	"Pisang",
+		            "qty"		: 	250,
+		            "discount"	: 	400,
+		            "hargaJual"	: 	2500
+		        }
+		    ]
+        }
+    ]
+}
+
+.........................................................................
+
+-----------------------------------------------------------------------------------------------------------------
+
+12. SALES INVOICE
+URL: http://139.59.101.119:8080/permaisuri/resources/salesinvoices
+--------------------------
+
+......................................................................
+
+Method: GET
+Query parameters :
+(
+	systemId,
+	customerId
+)
+Response Data :
+{
+	[
+        {
+            "systemId"			: 	22,
+		    "customer"			: 	14,
+		    "issueDate"			: 	"2018-05-14 15:56:10",
+		    "deliveryStatus"	: 	0,
+		    "miscCharge"		: 	0,
+		    "miscChargeMemo"	: 	"",
+		    "memo"				: 	"",
+		    "vat"				: 	0,
+		    "vatInclusive"		: 	false,
+		    "canceledStatus"	: 	0,
+		    "paymentStatus"		: 	0,
+		    "discount"			: 	0,
+		    "paymentType"		: 	0,
+            "paymentDetail"		: 	"Catatan",
+            "paymentAmount"		: 	300000,
+            "noFakPajak"		: 	"9191",
+            "vatinclusive"		: 	false
+		    "items"				: 	[
+		        {
+		            "item"		: 	"Topeng",
+		            "qty"		: 	100,
+		            "discount"	: 	0,
+		            "hargaJual"	: 	1100
+		        },
+		        {
+		            "item"		: 	"Pisang",
+		            "qty"		: 	250,
+		            "discount"	: 	400,
+		            "hargaJual"	: 	2500
+		        }
+		    ]
+        }
+    ]
+}
+
+.........................................................................
+
+-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Contoh:
+
+Request
+URL: http://localhost:8080/permaisuri/resources/customers
+Method: GET
+
+Response:
+{
+    "totalItems": 4,
+    "totalPages": 1,
+    "status": "successful"
+    "data": [
+        {
+            "userCredential": {
+                "systemId": 7,
+                "userName": "JohnFon"
+            },
+            "systemId": 7,
+            "firstName": "Johny",
+            "lastName": "Fonny",
+            "email": "wacksack@com",
+            "address": "Jalan ws 123",
+            "citizenIdType": 0,
+            "active": true
+        },
+        {
+            "userCredential": {
+                "systemId": 11,
+                "userName": "Jenny"
+            },
+            "systemId": 11,
+            "firstName": "Jenny",
+            "lastName": "Fahra",
+            "email": "wacksack@com",
+            "address": "Jalan JF 123",
+            "citizenIdType": 0,
+            "cartDetails": [
+                {
+                    "customer": 11,
+                    "item": "TDA",
+                    "qty": 200,
+                    "reqNote": "None"
+                },
+                {
+                    "customer": 11,
+                    "item": "Merah",
+                    "qty": 44,
+                    "reqNote": "None"
+                }
+            ],
+            "active": true
+        },
+        {
+            "userCredential": {
+                "systemId": 14,
+                "userName": "hitman"
+            },
+            "systemId": 14,
+            "firstName": "Bret",
+            "lastName": "Hart",
+            "email": "hitman@com",
+            "address": "Jalan BH 123",
+            "citizenIdType": 0,
+            "active": true
+        },
+        {
+            "userCredential": {
+                "systemId": 17,
+                "userName": "reno"
+            },
+            "systemId": 17,
+            "firstName": "Jean",
+            "lastName": "Reno",
+            "email": "jeanreno@com",
+            "address": "Jalan BH 123",
+            "citizenIdType": 0,
+            "active": true
+        }
+    ],
+}
+
+some peope just can't type fast man so I guess its okay and perfectly fine for them after all

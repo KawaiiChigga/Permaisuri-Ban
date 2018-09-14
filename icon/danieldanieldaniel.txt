@@ -1,0 +1,7 @@
+- recolor vector	[ubah jadi vektor, klik itemny, I buat ambil warna ]
+
+
+- save as png 	[edit dlu si artboardnya, export as PNG, checkbox si artboard, 300ppi]
+
+
+- cropping shits	[bkin kotak di atasnya, shift klik gambar dan kotakny, klik kanan make clipping mask]

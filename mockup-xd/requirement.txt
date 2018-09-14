@@ -1,0 +1,12 @@
+merk
+- GT
+- bridgestone
+- dunloop
+
+
+Setelah pilih merk, tampilkan pilihan kategori ban
+- passenger car
+- high performance
+- bias
+
+tentang aplikasi

@@ -1,0 +1,41 @@
+drawable list :
+
+3 PRIMARY COLOR :
+- #EF1724
+- #OB3C5A
+- #58585A
+
+
+=========================== LOGO ========================== 
+
+- logopermaisuri : PERMAISURIBAN
+- logopb : PB
+- orconnectwith
+
+=========================== BUTTON ========================
+
+- button Sign Up [BIRU]
+- button Login [MERAH]
+- button Login With Facebook
+- button Login With Google+
+- button Register [BIRU]
+
+- button GTRadial
+- button Bridgestone
+- button Dunlop
+
+=========================== ICON ==========================
+
+- username
+- password
+- email
+- phone
+- address
+
+- home
+- favourite
+- cart
+- transaction
+- account
+
+===========================================================

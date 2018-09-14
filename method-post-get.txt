@@ -1,0 +1,5 @@
+POST & GET
+
+- POST : mindahin sesuatu tanpa ad yang tau
+- GET : mindahin sesuatu ada orang lain yang tau
+

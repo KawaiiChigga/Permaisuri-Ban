@@ -1,0 +1,12 @@
+https://www.androidtutorialpoint.com/networking/json-parsing-tutorial-android/
+
+===============================================================================
+JavaScript Object Notation
+===============================================================================
+- bahasa data format independen untuk transmit data objects pakai pasangan KEY VALUE
+
+> JSON Array([)
+> JSON Objects({)
+> Key : pasangan Key membentuk JSON Object
+> Value : setiap key ada nilai tertentu (string, integer, double, dll.)
+
