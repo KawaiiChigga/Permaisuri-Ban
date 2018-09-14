@@ -1,9 +1,9 @@
 package cv.sunwell.permaisuriban.modules.main.home.category;
 
 import android.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -11,8 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,13 +20,14 @@ import cv.sunwell.permaisuriban.model.Item;
 public class HomeCategoryActivity extends AppCompatActivity implements SearchView.OnQueryTextListener
 {
     ArrayList<Item> itemArrayList = new ArrayList<> ();
+    ArrayList<Item> brandList = new ArrayList<> ();
     HomeCategoryAdapter homeCategoryAdapter;
+    HomeBrandAdapter homeBrandAdapter;
     Toolbar toolbar;
     RecyclerView recyclerView;
+    RecyclerView recyclerView2;
     String brand, description;
     int imgURL;
-    ImageView ivBrand;
-    TextView tvDescription;
 
     public void setActionBarTitle(String _title) {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -42,12 +41,19 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
     {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_home_category);
-        toolbar = (Toolbar) findViewById (R.id.toolbar);
+        toolbar = findViewById (R.id.toolbar);
         setSupportActionBar (toolbar);
         getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
 
+        getBrandList();
+        recyclerView2 = findViewById (R.id.rvBrands);
+        homeBrandAdapter = new HomeBrandAdapter(brandList);
+        Log.d("LIST", brandList.toString());
+        recyclerView2.setAdapter (homeBrandAdapter);
+        recyclerView2.setLayoutManager (new LinearLayoutManager  (this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView2.setHasFixedSize (true);
 
-        recyclerView = (RecyclerView) findViewById (R.id.rvHome);
+        recyclerView = findViewById (R.id.rvHome);
         homeCategoryAdapter = new HomeCategoryAdapter (this, getItemArrayList ());
         recyclerView.setAdapter (homeCategoryAdapter);
         recyclerView.setLayoutManager (new LinearLayoutManager (this));
@@ -60,16 +66,11 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         Log.d ("TEST", "Description : "+description);
         Log.d("TEST","Brand : "+brand);
 
-        ivBrand = (ImageView) findViewById (R.id.ivHomeBrand);
-        tvDescription = (TextView) findViewById (R.id.tvHomeBrandDescription);
-
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_layout);
         Toolbar toolbar = findViewById (R.id.toolbar);
         toolbar.setTitle (brand);
 
-        ivBrand.setImageResource (imgURL);
-        tvDescription.setText (description);
     }
 
     ArrayList<Item> getItemArrayList ()
@@ -79,6 +80,14 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         itemArrayList.add (new Item ("DUNLOP", "CS5 Ultra Touring", 125000, R.drawable.tire_2, 1, "HighPerfomance"));
         itemArrayList.add (new Item ("BRIDGESTONE", "DURAVIS 1", 1125000, R.drawable.tire_3, 1, "Bias"));
         return itemArrayList;
+    }
+
+    ArrayList<Item> getBrandList ()
+    {
+        brandList.add (new Item ("GT", R.drawable.gtlogo, "abc"));
+        brandList.add (new Item ("Bridgestone", R.drawable.bridgestonelogo, "abc"));
+        brandList.add (new Item ("Dunlop", R.drawable.dunloplogo, "abc"));
+        return brandList;
     }
 
     @Override

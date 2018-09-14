@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,45 +29,8 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         count = 0;
         this.context = _context;
         this.allItem = _allItem;
-        getPassenger ();
-        getHighPerfomance ();
-        getBias ();
     }
 
-    public  ArrayList<Item> getPassenger ()
-    {
-        for (Item item : allItem) {
-            if(item.getCategory ().toLowerCase ().equals ("passenger"))
-            {
-                Log.d("TEST","Data : "+item.getName ());
-                passengerItem.add (item);
-            }
-        }
-        return passengerItem;
-    }
-
-    public  ArrayList<Item> getHighPerfomance ()
-    {
-        for (Item item : allItem) {
-            if(item.getCategory ().toLowerCase ().equals ("highperfomance"))
-            {
-                Log.d("TEST","Data : "+item.getName ());
-                highItem.add (item);
-            }
-        }
-        return highItem;
-    }
-
-    public  ArrayList<Item> getBias ()
-    {
-        for (Item item : allItem) {
-            if (item.getCategory ().toLowerCase ().equals ("bias")) {
-                Log.d ("TEST", "Data : " + item.getName ());
-                biasItem.add (item);
-            }
-        }
-        return biasItem;
-    }
 
     @NonNull
     @Override
@@ -151,7 +113,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         HorizontalViewHolder (View _view)
         {
             super (_view);
-            recyclerView = (RecyclerView) _view.findViewById (R.id.rvHorizontal);
+            recyclerView = _view.findViewById (R.id.rvHorizontal);
         }
     }
 

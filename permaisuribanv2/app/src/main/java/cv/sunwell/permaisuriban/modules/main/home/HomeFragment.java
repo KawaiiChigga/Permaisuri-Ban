@@ -29,9 +29,9 @@ public class HomeFragment extends Fragment
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         view = inflater.inflate (R.layout.fragment_home, container, false);
-        recyclerView = (RecyclerView) view.findViewById (R.id.rvHome);
+        recyclerView = view.findViewById (R.id.rvHome);
         insertItem ();
-        layoutManager = new LinearLayoutManager ((MainActivity) getActivity ());
+        layoutManager = new LinearLayoutManager (getActivity ());
         homeAdapter = new HomeAdapter (brandItem, getContext ());
         recyclerView.setAdapter (homeAdapter);
         recyclerView.setLayoutManager (layoutManager);
@@ -42,13 +42,13 @@ public class HomeFragment extends Fragment
 
     public void insertItem ()
     {
-        Item temp = new Item("Bridgestone",R.drawable.cat_passenger_suv,"The Bridgestone Group is eternally committed to serving society with superior quality. ");
+        Item temp = new Item("Passenger & SUV",R.drawable.cat_passenger_suv,"The Bridgestone Group is eternally committed to serving society with superior quality. ");
         brandItem.add (temp);
-        temp = new Item("Dunlop",R.drawable.cat_light_truck,"For over 120 years, Dunlop has led the way in superior driving performance and excellence in racing. ");
+        temp = new Item("Light Truck",R.drawable.cat_light_truck,"For over 120 years, Dunlop has led the way in superior driving performance and excellence in racing. ");
         brandItem.add (temp);
-        temp = new Item("GT Radial",R.drawable.cat_truck_buses,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
+        temp = new Item("Truck & Buses",R.drawable.cat_truck_buses,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
         brandItem.add (temp);
-        temp = new Item("GT Radial",R.drawable.cat_others,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
+        temp = new Item("Others",R.drawable.cat_others,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
         brandItem.add (temp);
     }
 

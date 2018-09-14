@@ -41,8 +41,7 @@
             android:parentActivityName=".modules.main.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".modules.main.home.category.detail.ItemDetailActivity"
-            android:parentActivityName=".modules.main.home.category.HomeCategoryActivity" />
+            android:name=".modules.main.home.category.detail.ItemDetailActivity"/>
         <activity android:name=".modules.main.account.edit.EditActivity" />
         <activity android:name=".modules.main.home.type.TypeActivity"></activity>
     </application>
