@@ -42,7 +42,7 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
     public void onBindViewHolder (@NonNull HomeBrandAdapter.MyViewHolder holder, int position)
     {
         holder.brandImg.setImageResource (brandItem.get (position).getImgURL ());
-
+        holder.toggleButton.setBackgroundResource(brandItem.get (position).getImgURL ());
     }
 
     @Override
@@ -68,10 +68,10 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
         @Override
         public void onCheckedChanged(CompoundButton compound, boolean isChecked) {
             if(isChecked){
-                Toast.makeText(context, "Checked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Checked", Toast.LENGTH_SHORT).show();
             }
             else{
-                Toast.makeText(context,"UnChecked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"UnChecked", Toast.LENGTH_SHORT).show();
             }
         }
     }

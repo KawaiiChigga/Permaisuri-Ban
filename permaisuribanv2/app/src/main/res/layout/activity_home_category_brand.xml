@@ -25,7 +25,7 @@
                 android:textOn=""
                 android:textOff=""
                 android:id="@+id/toggle"
-                android:background="@drawable/toggle"/>
+                android:button="@drawable/toggle"/>
 
 
             <ImageView
