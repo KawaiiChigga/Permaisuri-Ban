@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_gravity="center">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvCartItemPrice"
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tvCartItemName"
+                android:layout_below="@+id/tvCartItemName"
+                android:gravity="left"
+                android:text="Rp. 960.000"
+                android:textColor="@color/colorP2"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/tvCartItemName"
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ivCartItemImage"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@+id/ivCartItemImage"
+                android:gravity="left"
+                android:text="GT Champiro GTX Pro 185/65R15 88H"
+                android:textColor="#000000"
+                android:textSize="12dp" />
+
+            <ImageView
+                android:id="@+id/ivCartItemImage"
+                android:layout_width="64dp"
+                android:layout_height="92dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="17dp"
+                app:srcCompat="@drawable/tire_dummy" />
+
+            <Button
+                android:id="@+id/ivCartDelete"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="14dp"
+                android:backgroundTint="@color/colorP2"
+                android:text="Remove"
+                android:textColor="#FFFFFF"
+                android:textSize="8dp" />
+
+            <ImageView
+                android:id="@+id/ivCartMinus"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignStart="@+id/tvCartItemPrice"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_decrease" />
+
+            <TextView
+                android:id="@+id/tvCartItemCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="131dp"
+                android:text="1" />
+
+            <ImageView
+                android:id="@+id/ivCartPlus"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="153dp"
+                app:srcCompat="@drawable/ic_increase" />
+
+            <TextView
+                android:id="@+id/tvCartSubtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ivCartDelete"
+                android:layout_alignStart="@+id/tvCartItemName"
+                android:text="SUBTOTAL"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/tvCartSubtotalNominal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tvCartItemName"
+                android:layout_below="@+id/ivCartDelete"
+                android:text="Rp. 1.920.000"
+                android:textColor="@color/colorP2" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cv.sunwell.permaisuriban">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/permaisuri_ban_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".modules.splashscreen.SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".modules.auth.AuthActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".modules.auth.login.LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".modules.auth.register.RegisterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".modules.main.MainActivity"
+            android:label="@string/title_activity_main" />
+        <activity android:name=".modules.auth.GetJSONObjectActivity" />
+        <activity android:name=".modules.auth.login.LoginResultActivity" />
+        <activity android:name=".modules.auth.register.RegisterResultActivity" />
+        <activity android:name=".modules.main.transaction.detail.TransactionDetailActivity" />
+        <activity
+            android:name=".modules.main.home.category.HomeCategoryActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".modules.main.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".modules.main.home.category.detail.ItemDetailActivity"
+            android:parentActivityName=".modules.main.home.category.HomeCategoryActivity" />
+        <activity android:name=".modules.main.account.edit.EditActivity" />
+        <activity android:name=".modules.main.home.type.TypeActivity"></activity>
+    </application>
+
+</manifest>

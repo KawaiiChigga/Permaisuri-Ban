@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="#FFFFFF"
+    tools:context=".modules.auth.login.LoginActivity">
+
+    <ImageView
+        android:id="@+id/ivLongLogo"
+        android:layout_width="@dimen/width_long_logo"
+        android:layout_height="@dimen/height_long_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_top_long_logo"
+        app:srcCompat="@drawable/logo_300_100" />
+
+    <ImageView
+        android:id="@+id/ivUsername"
+        android:layout_width="@dimen/width_icon"
+        android:layout_height="@dimen/height_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/ivLongLogo"
+        android:layout_marginTop="240dp"
+        app:srcCompat="@drawable/ic_username" />
+
+    <ImageView
+        android:id="@+id/ivPassword"
+        android:layout_width="@dimen/width_icon"
+        android:layout_height="@dimen/height_icon"
+        android:layout_alignStart="@+id/ivLongLogo"
+        android:layout_marginTop="290dp"
+        app:srcCompat="@drawable/ic_password" />
+
+    <EditText
+        android:id="@+id/etLogUsername"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/ivLongLogo"
+        android:layout_below="@id/ivLongLogo"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="username"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etLogPassword"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/ivLongLogo"
+        android:layout_below="@id/etLogUsername"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnLoginNormal"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivLongLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:onClick="ocLoginNormal"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/colorP1"
+        />
+
+    <ImageView
+        android:id="@+id/ivOrConnectWith"
+        android:layout_width="@dimen/width_ocw"
+        android:layout_height="@dimen/height_ocw"
+        android:layout_below="@id/btnLoginNormal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/or_con_with" />
+
+    <Button
+        android:id="@+id/btnLoginFacebook"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivOrConnectWith"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Login With Facebook"
+        android:backgroundTint="#3B5999"
+        android:textColor="#FFFFFF"
+        />
+
+    <Button
+        android:id="@+id/btnLoginGoogle"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLoginFacebook"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Login With Google+"
+        android:backgroundTint="#F22E06"
+        android:textColor="#FFFFFF"
+        />
+
+
+</RelativeLayout>

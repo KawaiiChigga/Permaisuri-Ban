@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_gravity="center">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvTransItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvTransItemPrice"
+                android:layout_width="215dp"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tvTransItemName"
+                android:layout_below="@+id/tvTransItemName"
+                android:layout_toRightOf="@+id/ivTransItemImage"
+                android:gravity="left"
+                android:text="Rp. 960.000"
+                android:textColor="@color/colorP2"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tvTransItemName"
+                android:layout_width="279dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/ivTransItemImage"
+                android:gravity="left"
+                android:text="GT Champiro GTX Pro 185/65R15 88H"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:id="@+id/ivTransItemImage"
+                android:layout_width="57dp"
+                android:layout_height="77dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                app:srcCompat="@drawable/tire_dummy" />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

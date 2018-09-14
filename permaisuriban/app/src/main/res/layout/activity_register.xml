@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="#FFFFFF"
+    tools:context=".modules.auth.register.RegisterActivity">
+
+
+    <ImageView
+        android:id="@+id/ivLongLogo"
+        android:layout_width="@dimen/width_long_logo"
+        android:layout_height="@dimen/height_long_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_top_long_logo"
+        app:srcCompat="@drawable/logo_300_100" />
+
+    <ImageView
+        android:id="@+id/ivRegEmail"
+        android:layout_width="@dimen/width_icon"
+        android:layout_height="@dimen/height_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/ivLongLogo"
+        android:layout_marginTop="245dp"
+        app:srcCompat="@drawable/email" />
+
+    <ImageView
+        android:id="@+id/ivRegPhone"
+        android:layout_width="@dimen/width_icon"
+        android:layout_height="@dimen/height_icon"
+        android:layout_alignStart="@+id/ivLongLogo"
+        android:layout_below="@id/etRegEmail"
+        android:layout_marginTop="@dimen/icon_reg_margin_top"
+        app:srcCompat="@drawable/phone" />
+
+    <ImageView
+        android:id="@+id/ivRegAddress"
+        android:layout_width="@dimen/width_icon"
+        android:layout_height="@dimen/height_icon"
+        android:layout_alignStart="@+id/ivLongLogo"
+        android:layout_below="@id/ivRegPhone"
+        android:layout_marginTop="@dimen/icon_reg_margin_top"
+        app:srcCompat="@drawable/dummy" />
+
+    <ImageView
+        android:id="@+id/ivRegUsername"
+        android:layout_width="@dimen/width_icon"
+        android:layout_height="@dimen/height_icon"
+        android:layout_alignStart="@+id/ivLongLogo"
+        android:layout_below="@id/ivRegAddress"
+        android:layout_marginTop="@dimen/icon_reg_margin_top"
+        app:srcCompat="@drawable/ic_user" />
+
+    <ImageView
+        android:id="@+id/ivRegPassword"
+        android:layout_width="@dimen/width_icon"
+        android:layout_height="@dimen/height_icon"
+        android:layout_alignStart="@+id/ivLongLogo"
+        android:layout_below="@id/ivRegUsername"
+        android:layout_marginTop="@dimen/icon_reg_margin_top"
+        app:srcCompat="@drawable/pass" />
+
+    <EditText
+        android:id="@+id/etRegEmail"
+        android:layout_width="@dimen/width_et_register"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivRegEmail"
+        android:layout_below="@id/ivLongLogo"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etRegPhonenumber"
+        android:layout_width="@dimen/width_et_register"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etRegEmail"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/etRegEmail"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="phone number"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etRegAddress"
+        android:layout_width="@dimen/width_et_register"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etRegEmail"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/etRegPhonenumber"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="address"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etRegUsername"
+        android:layout_width="@dimen/width_et_register"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etRegEmail"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/etRegAddress"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="username"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etRegPassword"
+        android:layout_width="@dimen/width_et_register"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/etRegEmail"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/etRegUsername"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/etRegEmail"
+        android:layout_below="@+id/etRegPassword"
+        android:layout_marginTop="30dp"
+        android:text="Register"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/colorP2"
+        />
+
+    <TextView
+        android:id="@+id/tvAlreadyHaveAccont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnRegister"
+        android:layout_marginTop="20dp"
+        android:text="Already Have An Account ?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Tooltip" />
+
+</RelativeLayout>

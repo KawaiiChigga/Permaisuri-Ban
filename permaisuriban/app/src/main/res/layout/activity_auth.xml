@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".modules.auth.AuthActivity">
+
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="196dp"
+        android:layout_height="224dp"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/permaisuri_ban_logo" />
+
+    <Button
+        android:id="@+id/btnAuthSignUp"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_top_logo_btnsign"
+        android:backgroundTint="@color/colorP2"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnAuthLogin"
+        android:layout_width="@dimen/btn_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAuthSignUp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_top_btnsign_btnlog"
+        android:backgroundTint="@color/colorP1"
+        android:text="Login"
+        android:textColor="#FFFFFF" />
+
+
+</RelativeLayout>

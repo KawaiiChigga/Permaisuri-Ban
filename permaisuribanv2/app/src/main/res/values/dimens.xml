@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Logo -->
+    <dimen name="height_logo">98dp</dimen>
+    <dimen name="width_logo">98dp</dimen>
+    <dimen name="height_long_logo">100dp</dimen>
+    <dimen name="width_long_logo">300dp</dimen>
+    <dimen name="margin_top_long_logo">100dp</dimen>
+    <dimen name="height_ocw">40dp</dimen>
+    <dimen name="width_ocw">300dp</dimen>
+
+    <!-- Icon -->
+    <dimen name="height_icon">30dp</dimen>
+    <dimen name="width_icon">30dp</dimen>
+    <dimen name="icon_reg_margin_top">22dp</dimen>
+
+    <!-- Button -->
+    <dimen name="margin_top_logo_btnsign">30dp</dimen>
+    <dimen name="margin_top_btnsign_btnlog">10dp</dimen>
+    <dimen name="btn_width">300dp</dimen>
+
+    <!-- Edit Text -->
+    <dimen name="width_et_register">270dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+</resources>
