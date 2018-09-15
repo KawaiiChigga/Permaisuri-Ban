@@ -2,11 +2,12 @@ package cv.sunwell.permaisuriban.modules.main.home.category;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,118 +15,68 @@ import java.util.ArrayList;
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Item;
 
-public class HomeCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
+public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapter.MyViewHolder>
 {
-    private Context context;
-    private ArrayList<Item> allItem;
-    private ArrayList<Item> passengerItem = new ArrayList<> ();
-    private ArrayList<Item> highItem = new ArrayList<> ();
-    private ArrayList<Item> biasItem = new ArrayList<> ();
-    private final int HORIZONTAL = 2;
-    private static int count = 0;
 
-    public HomeCategoryAdapter (Context _context, ArrayList<Item> _allItem)
+    ArrayList<Item> alCategoryItem = new ArrayList<> ();
+    Context context;
+
+    public HomeCategoryAdapter (ArrayList<Item> _alCategoryItem, Context _context)
     {
-        count = 0;
+        this.alCategoryItem = _alCategoryItem;
         this.context = _context;
-        this.allItem = _allItem;
     }
-
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType)
+    public HomeCategoryAdapter.MyViewHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType)
     {
-        String s_category = null;
-        LayoutInflater inflater = LayoutInflater.from (context);
-        View view;
-        RecyclerView.ViewHolder holder;
-        TextView category;
-
-        view = inflater.inflate (R.layout.activity_home_category_horizontal, parent, false);
-        category = view.findViewById (R.id.tvCategoryName);
-        switch (count) {
-            case 0:
-                s_category = "Passenger";
-                break;
-            case 1:
-                s_category = "High Perfomance";
-                break;
-            case 2:
-                s_category = "Bias";
-                break;
-        }
-        category.setText (s_category);
-        holder = new HorizontalViewHolder (view);
-        return holder;
+        View view = LayoutInflater.from (parent.getContext ()).inflate (R.layout.activity_home_category_item, parent, false);
+        return new HomeCategoryAdapter.MyViewHolder (view);
     }
 
     @Override
-    public void onBindViewHolder (@NonNull RecyclerView.ViewHolder holder, int position)
+    public void onBindViewHolder (@NonNull HomeCategoryAdapter.MyViewHolder holder, int position)
     {
-        if (holder.getItemViewType () == HORIZONTAL) {
-            horizontalView ((HorizontalViewHolder) holder);
-        }
-    }
-
-    public void horizontalView (HorizontalViewHolder _holder)
-    {
-        HorizontalAdapter tempAdapter = null;
-        switch (count) {
-            case 0:
-                tempAdapter = new HorizontalAdapter (passengerItem, context);
-                break;
-            case 1:
-                tempAdapter = new HorizontalAdapter (highItem, context);
-                break;
-            case 2:
-                tempAdapter = new HorizontalAdapter (biasItem, context);
-                break;
-        }
-
-        _holder.recyclerView.setLayoutManager (new LinearLayoutManager (context, LinearLayoutManager.HORIZONTAL, false));
-        _holder.recyclerView.setAdapter (tempAdapter);
-        if (count == 3) {
-            count = 0;
-        } else {
-            count++;
-        }
+        Log.d ("TEST", "Name : " + alCategoryItem.get (position).getName ());
+        Log.d ("TEST", "Brand : " + alCategoryItem.get (position).getBrand ());
+        Log.d ("TEST", "Price : " + alCategoryItem.get (position).getPrice ());
+        Log.d ("TEST", "URL : " + alCategoryItem.get (position).getImgURL ());
+        holder.tvCatItemName.setText (alCategoryItem.get (position).getName ());
+        holder.tvCatItemBrand.setText (alCategoryItem.get (position).getBrand ());
+        holder.tvCatItemPrice.setText ("Rp. " + alCategoryItem.get (position).getPrice ());
+        holder.ivCatItemImg.setImageResource (alCategoryItem.get (position).getImgURL ());
 
     }
 
     @Override
     public int getItemCount ()
     {
-        return allItem.size ();
+        return alCategoryItem.size ();
     }
 
-
-    @Override
-    public int getItemViewType (int position)
+    public static class MyViewHolder extends RecyclerView.ViewHolder
     {
-        return HORIZONTAL;
-    }
+        TextView tvCatItemBrand;
+        TextView tvCatItemName;
+        TextView tvCatItemPrice;
+        ImageView ivCatItemImg;
 
-    public class HorizontalViewHolder extends RecyclerView.ViewHolder
-    {
-        RecyclerView recyclerView;
-
-        HorizontalViewHolder (View _view)
+        public MyViewHolder (View itemView)
         {
-            super (_view);
-            recyclerView = _view.findViewById (R.id.rvHorizontal);
+            super (itemView);
+            tvCatItemBrand = itemView.findViewById (R.id.tvHorBrand);
+            tvCatItemName = itemView.findViewById (R.id.tvHorName);
+            tvCatItemPrice = itemView.findViewById (R.id.tvHorPrice);
+            ivCatItemImg = itemView.findViewById (R.id.ivHorImg);
+
         }
     }
 
-    public void setFilter (ArrayList<Item> _arrayList)
+    public void setFilter (ArrayList<Item> _alFavouriteItem)
     {
-        count = 0;
-        allItem = new ArrayList<> ();
-        allItem.addAll (_arrayList);
+        alCategoryItem = new ArrayList<> ();
+        alCategoryItem.addAll (_alFavouriteItem);
         notifyDataSetChanged ();
     }
-
-
-
-
 }

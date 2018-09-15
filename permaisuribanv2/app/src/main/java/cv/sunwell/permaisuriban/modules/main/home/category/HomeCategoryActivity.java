@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -11,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,6 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
 {
     ArrayList<Item> itemArrayList = new ArrayList<> ();
     ArrayList<Item> brandList = new ArrayList<> ();
-    ToggleButton toggleButton;
     HomeCategoryAdapter homeCategoryAdapter;
     HomeBrandAdapter homeBrandAdapter;
     Toolbar toolbar;
@@ -30,6 +29,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
     RecyclerView recyclerView2;
     String brand, description;
     int imgURL;
+    private RecyclerView.LayoutManager layoutManager;
 
     public void setActionBarTitle(String _title) {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -47,20 +47,19 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         setSupportActionBar (toolbar);
         getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
 
-        getBrandList();
         recyclerView2 = findViewById (R.id.rvBrands);
-        homeBrandAdapter = new HomeBrandAdapter(brandList, this);
+        homeBrandAdapter = new HomeBrandAdapter(getBrandList(), this);
         recyclerView2.setAdapter (homeBrandAdapter);
         recyclerView2.setLayoutManager (new LinearLayoutManager  (this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView2.setHasFixedSize (true);
 
-
-
         recyclerView = findViewById (R.id.rvHome);
-        homeCategoryAdapter = new HomeCategoryAdapter (this, getItemArrayList ());
+        layoutManager = new GridLayoutManager(this, 3);
+        homeCategoryAdapter = new HomeCategoryAdapter(getItemArrayList(), this);
         recyclerView.setAdapter (homeCategoryAdapter);
-        recyclerView.setLayoutManager (new LinearLayoutManager (this));
+        recyclerView.setLayoutManager (layoutManager);
         recyclerView.setHasFixedSize (true);
+
 
         brand = getIntent ().getStringExtra ("brand");
         imgURL = getIntent ().getIntExtra ("imgURL", 0);
