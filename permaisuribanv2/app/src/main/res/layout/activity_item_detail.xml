@@ -35,15 +35,17 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvItemDetailName"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:padding="5dp"
-                    android:text="Ban Forceum Octa"
+                    android:text="Ban Despacito"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvItemDetailPrice"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginBottom="10dp"
@@ -185,7 +187,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:padding="5dp"
-                    android:text="Forceum Octa pun diklaim memiliki tampilan lebih anggun dan memiliki performance yang prima. Dengan desain telapak asymetris dengan arah sipes yang dinamis pada tiga alur utama rib membuat ban Forceum Octa tetap nyaman meski dalam kecepatan tinggi." />
+                    android:text="Ban Forceum Octa pun diklaim memiliki tampilan lebih anggun dan memiliki performance yang prima. Dengan desain telapak asymetris dengan arah sipes yang dinamis pada tiga alur utama rib membuat ban Forceum Octa tetap nyaman meski dalam kecepatan tinggi." />
 
                 <Button
                     android:layout_width="370dp"

@@ -1,6 +1,7 @@
 package cv.sunwell.permaisuriban.modules.main.home.category;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,16 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Item;
+import cv.sunwell.permaisuriban.modules.main.home.category.detail.ItemDetailActivity;
 
 public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapter.MyViewHolder>
 {
 
-    ArrayList<Item> alCategoryItem = new ArrayList<> ();
+    public ArrayList<Item> alCategoryItem = new ArrayList<> ();
     Context context;
 
     public HomeCategoryAdapter (ArrayList<Item> _alCategoryItem, Context _context)
@@ -47,6 +50,8 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         holder.tvCatItemPrice.setText ("Rp. " + alCategoryItem.get (position).getPrice ());
         holder.ivCatItemImg.setImageResource (alCategoryItem.get (position).getImgURL ());
 
+
+
     }
 
     @Override
@@ -55,7 +60,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         return alCategoryItem.size ();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder
+    public class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView tvCatItemBrand;
         TextView tvCatItemName;
@@ -70,6 +75,25 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
             tvCatItemPrice = itemView.findViewById (R.id.tvHorPrice);
             ivCatItemImg = itemView.findViewById (R.id.ivHorImg);
 
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    // get position
+                    int pos = getAdapterPosition();
+
+                    // check if item still exists
+                    if(pos != RecyclerView.NO_POSITION){
+                        Item clickedDataItem = alCategoryItem.get(pos);
+                        //Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context, ItemDetailActivity.class);
+                        intent.putExtra ("brand",clickedDataItem.getBrand());
+                        intent.putExtra ("imgURL",clickedDataItem.getImgURL());
+                        intent.putExtra ("description",clickedDataItem.getDescription());
+                        intent.putExtra ("name",clickedDataItem.getName());
+                        context.startActivity(intent);
+                    }
+                }
+            });
         }
     }
 
@@ -79,4 +103,5 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         alCategoryItem.addAll (_alFavouriteItem);
         notifyDataSetChanged ();
     }
+
 }
