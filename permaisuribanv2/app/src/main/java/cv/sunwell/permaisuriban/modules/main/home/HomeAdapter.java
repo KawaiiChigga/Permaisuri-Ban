@@ -65,8 +65,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>
             @Override
             public boolean onLongClick (View v)
             {
-                Intent intent = new Intent(context, ItemDetailActivity.class);
-                context.startActivity(intent);
+                //Intent intent = new Intent(context, ItemDetailActivity.class);
+                //context.startActivity(intent);
                 return true;
             }
         });

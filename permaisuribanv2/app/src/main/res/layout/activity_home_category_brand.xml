@@ -25,6 +25,7 @@
                 android:textOn=""
                 android:textOff=""
                 android:id="@+id/toggle"
+                android:checked="true"
                 android:button="@drawable/toggle"/>
 
 

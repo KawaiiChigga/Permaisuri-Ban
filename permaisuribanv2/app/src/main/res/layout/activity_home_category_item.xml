@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="130dp"
-    android:layout_height="210dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
-    android:orientation="horizontal">
+    android:layout_width="match_parent"
+    android:layout_height="225dp">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cvHomeCategoryItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="5dp"
-        >
+        android:layout_margin="5dp"
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +46,7 @@
             <TextView
                 android:id="@+id/tvHorPrice"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Item Price"
                 android:textColor="#0B3C5A"
