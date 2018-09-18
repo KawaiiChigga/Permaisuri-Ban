@@ -73,7 +73,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
 //                        context.startActivity (intent);
                         Toast.makeText (context, "This is E-mail", Toast.LENGTH_LONG).show ();
                         break;
-                    case "Password":
+                    case "Password \n\n ********":
                         Toast.makeText (context, "This is Password", Toast.LENGTH_LONG).show ();
                         break;
                     case "Notifications":

@@ -43,6 +43,7 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
     {
         holder.brandImg.setImageResource (brandItem.get (position).getImgURL ());
         holder.toggleButton.setBackgroundResource(brandItem.get (position).getImgURL ());
+        holder.brandName = brandItem.get(position).getBrand();
     }
 
     @Override
@@ -54,6 +55,7 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener
     {
         ImageView brandImg;
+        String brandName;
         ToggleButton toggleButton;
         Context context;
         public MyViewHolder (View itemView, Context context)
@@ -68,10 +70,16 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
         @Override
         public void onCheckedChanged(CompoundButton compound, boolean isChecked) {
             if(isChecked){
-                Toast.makeText(context, "Checked", Toast.LENGTH_SHORT).show();
+                if(context instanceof HomeCategoryActivity){
+                    ((HomeCategoryActivity)context).FilterBrandEnable(brandName);
+                }
+                Toast.makeText(context, "Checked " + brandName, Toast.LENGTH_SHORT).show();
             }
             else{
-                Toast.makeText(context,"UnChecked", Toast.LENGTH_SHORT).show();
+                if(context instanceof HomeCategoryActivity){
+                    ((HomeCategoryActivity)context).FilterBrandDisable(brandName);
+                }
+                Toast.makeText(context,"UnChecked " + brandName, Toast.LENGTH_SHORT).show();
             }
         }
     }

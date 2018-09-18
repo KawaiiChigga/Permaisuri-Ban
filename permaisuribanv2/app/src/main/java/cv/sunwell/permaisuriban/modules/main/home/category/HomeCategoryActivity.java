@@ -22,6 +22,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
 {
     ArrayList<Item> itemArrayList = new ArrayList<> ();
     ArrayList<Item> brandList = new ArrayList<> ();
+    ArrayList<Item> filterList = new ArrayList<> ();
     HomeCategoryAdapter homeCategoryAdapter;
     HomeBrandAdapter homeBrandAdapter;
     Toolbar toolbar;
@@ -65,14 +66,12 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         imgURL = getIntent ().getIntExtra ("imgURL", 0);
         description = getIntent ().getStringExtra ("description");
 
-        Log.d ("TEST", "Description : "+description);
-        Log.d("TEST","Brand : "+brand);
-
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_layout);
         Toolbar toolbar = findViewById (R.id.toolbar);
         toolbar.setTitle (brand);
 
+        filterList.addAll(itemArrayList);
     }
 
     ArrayList<Item> getItemArrayList ()
@@ -113,7 +112,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
     {
         newText = newText.toLowerCase ();
         ArrayList<Item> newList = new ArrayList<> ();
-        for (Item item : itemArrayList) {
+        for (Item item : filterList) {
             String name = item.getName ().toLowerCase ();
             if (name.contains (newText)) {
                 newList.add (item);
@@ -123,5 +122,29 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         return true;
     }
 
+    public boolean FilterBrandEnable (String newText)
+    {
+        newText = newText.toLowerCase ();
+        for (Item item : itemArrayList) {
+            String brand = item.getBrand ().toLowerCase ();
+            if (brand.contains (newText)) {
+                filterList.add (item);
+            }
+        }
+        homeCategoryAdapter.setFilter (filterList);
+        return true;
+    }
 
+    public boolean FilterBrandDisable (String newText)
+    {
+        newText = newText.toLowerCase ();
+        for (Item item : itemArrayList) {
+            String brand = item.getBrand ().toLowerCase ();
+            if (brand.contains (newText)) {
+                filterList.remove (item);
+            }
+        }
+        homeCategoryAdapter.setFilter (filterList);
+        return true;
+    }
 }

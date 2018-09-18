@@ -54,11 +54,13 @@ public class FavouriteFragment extends Fragment implements SearchView.OnQueryTex
         listItem.add (temp);
         temp = new Item("GT RADIAL", "BAN 3", 1750000,R.drawable.tire_3, 1,"Passenger");
         listItem.add (temp);
-        temp = new Item("GT RADIAL", "BAN 3", 1750000,R.drawable.tire_3, 1,"Passenger");
+        temp = new Item("BRIDGESTONE", "BAN 4", 1750000,R.drawable.tire_3, 1,"Passenger");
         listItem.add (temp);
-        temp = new Item("GT RADIAL", "BAN 3", 1750000,R.drawable.tire_3, 1,"Passenger");
+        temp = new Item("GT RADIAL", "BAN 5", 1750000,R.drawable.tire_3, 1,"Passenger");
         listItem.add (temp);
-        temp = new Item("GT RADIAL", "BAN 3", 1750000,R.drawable.tire_3, 1,"Passenger");
+        temp = new Item("GT RADIAL", "BAN 6", 1750000,R.drawable.tire_3, 1,"Passenger");
+        listItem.add (temp);
+        temp = new Item ("DUNLOP", "BAN 7", 125000, R.drawable.tire_1, 1,"Passenger");
         listItem.add (temp);
 
     }

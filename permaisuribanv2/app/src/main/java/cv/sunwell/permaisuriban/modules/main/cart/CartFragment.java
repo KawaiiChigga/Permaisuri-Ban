@@ -51,6 +51,8 @@ public class CartFragment extends Fragment
         listItem.add (temp);
         temp = new Item ("DUNLOP", "Ban Super Baik", 1900000, R.drawable.tire_dummy, 3, "Passenger");
         listItem.add (temp);
+        temp = new Item ("DUNLOP", "Ban Super Jahat", 1900000, R.drawable.tire_dummy, 3, "Passenger");
+        listItem.add (temp);
         //maks nama 25 karakter
     }
 

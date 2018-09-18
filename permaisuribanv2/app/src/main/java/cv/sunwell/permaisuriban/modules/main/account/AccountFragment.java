@@ -48,7 +48,6 @@ public class AccountFragment extends Fragment
         view = inflater.inflate (R.layout.fragment_account, container, false);
         recyclerView = (RecyclerView) view.findViewById (R.id.rvAccount);
         tvName = (TextView) view.findViewById (R.id.tvAccountName);
-        tvAddress = (TextView) view.findViewById (R.id.tvAccountAddress);
 
         sharedPreferences = getActivity ().getSharedPreferences ("loginPref", Context.MODE_PRIVATE);
         username = sharedPreferences.getString ("userName", "");

@@ -39,10 +39,6 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
     @Override
     public void onBindViewHolder (@NonNull FavouriteAdapter.MyViewHolder holder, int position)
     {
-        Log.d ("TEST", "Name : " + alFavouriteItem.get (position).getName ());
-        Log.d ("TEST", "Brand : " + alFavouriteItem.get (position).getBrand ());
-        Log.d ("TEST", "Price : " + alFavouriteItem.get (position).getPrice ());
-        Log.d ("TEST", "URL : " + alFavouriteItem.get (position).getImgURL ());
         holder.tvFavItemName.setText (alFavouriteItem.get (position).getName ());
         holder.tvFavItemBrand.setText (alFavouriteItem.get (position).getBrand ());
         holder.tvFavItemPrice.setText ("Rp. " + alFavouriteItem.get (position).getPrice ());
