@@ -1,6 +1,8 @@
 package cv.sunwell.permaisuriban.model;
 
-public class Item
+import android.support.annotation.NonNull;
+
+public class Item implements Comparable<Item>
 {
     private String name;
     private int price;
@@ -107,5 +109,10 @@ public class Item
     public void setCategory (String _category)
     {
         category = _category;
+    }
+
+    @Override
+    public int compareTo(@NonNull Item item) {
+        return this.getName().compareTo(item.getName());
     }
 }

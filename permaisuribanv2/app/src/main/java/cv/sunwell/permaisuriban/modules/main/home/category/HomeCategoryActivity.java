@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Item;
@@ -80,6 +81,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         itemArrayList.add (new Item ("GT RADIAL", "GT Chomporo GTX Pro 186", 860000, R.drawable.tire_1, 250, "Passenger"));
         itemArrayList.add (new Item ("DUNLOP", "CS5 Ultra Touring", 125000, R.drawable.tire_2, 300, "High Perfomance"));
         itemArrayList.add (new Item ("BRIDGESTONE", "DURAVIS 1", 1125000, R.drawable.tire_3, 400, "Bias"));
+        Collections.sort(itemArrayList);
         return itemArrayList;
     }
 
@@ -131,6 +133,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
                 filterList.add (item);
             }
         }
+        Collections.sort(filterList);
         homeCategoryAdapter.setFilter (filterList);
         return true;
     }
@@ -144,6 +147,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
                 filterList.remove (item);
             }
         }
+        Collections.sort(filterList);
         homeCategoryAdapter.setFilter (filterList);
         return true;
     }
