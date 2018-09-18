@@ -48,6 +48,18 @@ public class TransactionFragment extends Fragment
         listItem.add (temp);
         temp = new Item ("BRIDGESTONE","GT Champiro GTX Pro 185/65R15 88H", 960000, R.drawable.tire_dummy2,1,"Passenger");
         listItem.add (temp);
+        temp = new Item ("GT RADIAL","GT Chomporo GTX Pro 185/65R15 88H", 960000, R.drawable.tire_dummy2,1,"Passenger");
+        listItem.add (temp);
+        temp = new Item ("GT RADIAL","GT Champiro GTX Pro 185/65R15 88H", 960000, R.drawable.tire_dummy2,1,"Passenger");
+        listItem.add (temp);
+        temp = new Item ("DUNLOP","GT Champiro GTX Pro 185/65R15 88H", 960000, R.drawable.tire_dummy2,1,"Passenger");
+        listItem.add (temp);
+        temp = new Item ("HAOXIANG","GT Champiro GTX Pro 185/65R15 88H", 960000, R.drawable.tire_dummy2,1,"Passenger");
+        listItem.add (temp);
+        temp = new Item ("SUPERHOT","GT Champiro GTX Pro 185/65R15 88H", 960000, R.drawable.tire_dummy2,1,"Passenger");
+        listItem.add (temp);
+        temp = new Item ("BRIDGESTONE","GT Champiro GTX Pro 185/65R15 88H", 960000, R.drawable.tire_dummy2,1,"Passenger");
+        listItem.add (temp);
 
     }
 

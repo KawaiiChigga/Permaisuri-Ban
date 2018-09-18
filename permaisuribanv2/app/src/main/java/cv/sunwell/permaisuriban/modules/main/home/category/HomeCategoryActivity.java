@@ -76,10 +76,10 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
 
     ArrayList<Item> getItemArrayList ()
     {
-        itemArrayList.add (new Item ("GT RADIAL", "GT Champiro GTX Pro 185", 960000, R.drawable.tire_1, 1, "Passenger"));
-        itemArrayList.add (new Item ("GT RADIAL", "GT Chomporo GTX Pro 186", 860000, R.drawable.tire_1, 1, "Passenger"));
-        itemArrayList.add (new Item ("DUNLOP", "CS5 Ultra Touring", 125000, R.drawable.tire_2, 1, "HighPerfomance"));
-        itemArrayList.add (new Item ("BRIDGESTONE", "DURAVIS 1", 1125000, R.drawable.tire_3, 1, "Bias"));
+        itemArrayList.add (new Item ("GT RADIAL", "GT Champiro GTX Pro 185", 960000, R.drawable.tire_1, 500, "Passenger"));
+        itemArrayList.add (new Item ("GT RADIAL", "GT Chomporo GTX Pro 186", 860000, R.drawable.tire_1, 250, "Passenger"));
+        itemArrayList.add (new Item ("DUNLOP", "CS5 Ultra Touring", 125000, R.drawable.tire_2, 300, "High Perfomance"));
+        itemArrayList.add (new Item ("BRIDGESTONE", "DURAVIS 1", 1125000, R.drawable.tire_3, 400, "Bias"));
         return itemArrayList;
     }
 

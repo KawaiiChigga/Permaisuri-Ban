@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import cv.sunwell.permaisuriban.R;
@@ -11,9 +12,20 @@ import cv.sunwell.permaisuriban.R;
 public class ItemDetailActivity extends AppCompatActivity
 {
     String name;
-    String price;
+    int price;
+    int imgURL;
+    String brand;
+    String category;
+    String description;
+    int count;
+
     TextView tvDetailName;
     TextView tvDetailPrice;
+    ImageView ivItemDetail;
+    TextView tvDetailBrand;
+    TextView tvDetailCategory;
+    TextView tvDetailDescription;
+    TextView tvDetailCount;
 
     @Override
     protected void onCreate (@Nullable Bundle savedInstanceState)
@@ -21,12 +33,29 @@ public class ItemDetailActivity extends AppCompatActivity
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_item_detail);
         name =  getIntent ().getStringExtra ("name");
-        price =  getIntent ().getStringExtra ("price");
+        price =  getIntent ().getIntExtra ("price", 0);
+        imgURL = getIntent().getIntExtra("imgURL", 0);
+        brand = getIntent().getStringExtra("brand");
+        category = getIntent().getStringExtra("category");
+        description = getIntent().getStringExtra("description");
+        count = getIntent().getIntExtra("count", 0);
         setTitle (name);
 
         tvDetailName = findViewById (R.id.tvItemDetailName);
         tvDetailPrice = findViewById (R.id.tvItemDetailPrice);
+        ivItemDetail = findViewById(R.id.ivItemDetail);
+        tvDetailBrand = findViewById(R.id.tvItemDetailBrand);
+        tvDetailCategory = findViewById(R.id.tvItemDetailCategory);
+        tvDetailDescription = findViewById(R.id.tvItemDetailDescription);
+        tvDetailCount = findViewById(R.id.tvItemDetailStockCount);
+
         tvDetailName.setText(name);
-        tvDetailPrice.setText(price);
+        tvDetailPrice.setText("Rp. " + price);
+        ivItemDetail.setImageResource(imgURL);
+        tvDetailBrand.setText("Brand        :     " + brand);
+        tvDetailCategory.setText("Category  :     " + category);
+        tvDetailCount.setText(String.valueOf(count));
+        //tvDetailDescription.setText(description);
+
     }
 }

@@ -73,13 +73,13 @@ public class HomeBrandAdapter extends RecyclerView.Adapter<HomeBrandAdapter.MyVi
                 if(context instanceof HomeCategoryActivity){
                     ((HomeCategoryActivity)context).FilterBrandEnable(brandName);
                 }
-                Toast.makeText(context, "Checked " + brandName, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Checked " + brandName, Toast.LENGTH_SHORT).show();
             }
             else{
                 if(context instanceof HomeCategoryActivity){
                     ((HomeCategoryActivity)context).FilterBrandDisable(brandName);
                 }
-                Toast.makeText(context,"UnChecked " + brandName, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"UnChecked " + brandName, Toast.LENGTH_SHORT).show();
             }
         }
     }

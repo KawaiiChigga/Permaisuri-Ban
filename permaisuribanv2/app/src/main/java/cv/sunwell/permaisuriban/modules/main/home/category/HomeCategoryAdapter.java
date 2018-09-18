@@ -41,17 +41,10 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     @Override
     public void onBindViewHolder (@NonNull HomeCategoryAdapter.MyViewHolder holder, int position)
     {
-        Log.d ("TEST", "Name : " + alCategoryItem.get (position).getName ());
-        Log.d ("TEST", "Brand : " + alCategoryItem.get (position).getBrand ());
-        Log.d ("TEST", "Price : " + alCategoryItem.get (position).getPrice ());
-        Log.d ("TEST", "URL : " + alCategoryItem.get (position).getImgURL ());
         holder.tvCatItemName.setText (alCategoryItem.get (position).getName ());
         holder.tvCatItemBrand.setText (alCategoryItem.get (position).getBrand ());
         holder.tvCatItemPrice.setText ("Rp. " + alCategoryItem.get (position).getPrice ());
         holder.ivCatItemImg.setImageResource (alCategoryItem.get (position).getImgURL ());
-
-
-
     }
 
     @Override
@@ -83,14 +76,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
                     // check if item still exists
                     if(pos != RecyclerView.NO_POSITION){
-                        Item clickedDataItem = alCategoryItem.get(pos);
-                        //Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getName(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(context, ItemDetailActivity.class);
-                        intent.putExtra ("brand",clickedDataItem.getBrand());
-                        intent.putExtra ("imgURL",clickedDataItem.getImgURL());
-                        intent.putExtra ("description",clickedDataItem.getDescription());
-                        intent.putExtra ("name",clickedDataItem.getName());
-                        context.startActivity(intent);
+                        putSend(pos);
                     }
                 }
             });
@@ -102,6 +88,22 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         alCategoryItem = new ArrayList<> ();
         alCategoryItem.addAll (_alFavouriteItem);
         notifyDataSetChanged ();
+    }
+
+    public void putSend(int pos){
+        Item clickedDataItem = alCategoryItem.get(pos);
+        //Toast.makeText(context, "You clicked " + clickedDataItem.getCount(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, ItemDetailActivity.class);
+
+        intent.putExtra ("brand",clickedDataItem.getBrand());
+        intent.putExtra ("imgURL",clickedDataItem.getImgURL());
+        intent.putExtra ("description",clickedDataItem.getDescription());
+        intent.putExtra ("name",clickedDataItem.getName());
+        intent.putExtra("price", clickedDataItem.getPrice());
+        intent.putExtra("category", clickedDataItem.getCategory());
+        intent.putExtra("count", clickedDataItem.getCount());
+
+        context.startActivity(intent);
     }
 
 }
