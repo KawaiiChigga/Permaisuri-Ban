@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Item;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
+import cv.sunwell.permaisuriban.modules.main.dialog.CartDeleteDialogFragment;
 
 public class CartFragment extends Fragment
 {
@@ -25,6 +27,11 @@ public class CartFragment extends Fragment
     private CartAdapter cartAdapter;
     private ArrayList<Item> listItem = new ArrayList<> ();
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -34,7 +41,7 @@ public class CartFragment extends Fragment
 
         layoutManager = new LinearLayoutManager ((MainActivity) getActivity ());
         insertItem ();
-        cartAdapter = new CartAdapter (listItem);
+        cartAdapter = new CartAdapter (listItem, CartFragment.this);
         recyclerView.setAdapter (cartAdapter);
         recyclerView.setLayoutManager (layoutManager);
 
@@ -56,10 +63,26 @@ public class CartFragment extends Fragment
         //maks nama 25 karakter
     }
 
+    public void deleteItem(int position){
+        cartAdapter.deleteCartItem(position);
+    }
 
     public void onResume ()
     {
         super.onResume ();
         ((MainActivity) getActivity ()).setActionBarTitle (R.string.title_cart);
+    }
+
+    public void showDeleteDialog(String name, int imgUrl, int position){
+        CartDeleteDialogFragment deleteDialog = new CartDeleteDialogFragment();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        Bundle args = new Bundle();
+        args.putString("name", name);
+        args.putInt("imgUrl", imgUrl);
+        args.putInt("position", position);
+        deleteDialog.setArguments(args);
+        deleteDialog.setTargetFragment(CartFragment.this, 1337);
+        deleteDialog.show(fm, "dialog");
+
     }
 }

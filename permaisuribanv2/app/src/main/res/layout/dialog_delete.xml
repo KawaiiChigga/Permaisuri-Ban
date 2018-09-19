@@ -1,0 +1,78 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:minWidth="300dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivDelDialog"
+            android:layout_width="51dp"
+            android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="80dp"
+            app:srcCompat="@drawable/tire_dummy" />
+
+        <TextView
+            android:id="@+id/tvDelDialog"
+            android:layout_width="140dp"
+            android:layout_height="63dp"
+            android:layout_alignTop="@+id/ivDelDialog"
+            android:layout_centerHorizontal="true"
+            android:text="Ban Forceum Octa Super Credibilis Godzilla"
+            android:textSize="14dp" />
+
+        <TextView
+
+            android:layout_width="279dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:text="Apakah anda ingin menghapus barang : "
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnDelDialogNo"
+            android:layout_width="30dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="268dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:text="X"
+            android:textAllCaps="false"
+            android:textSize="22dp" />
+
+        <Button
+            android:id="@+id/btnDelDialogYes"
+            android:layout_width="281dp"
+            android:layout_height="34dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="53dp"
+            android:background="@color/colorP4"
+            android:text="Hapus barang"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnDelDialogYesAdd"
+            android:layout_width="281dp"
+            android:layout_height="34dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp"
+            android:background="@color/colorP1"
+            android:text="Hapus dan tambah ke favorit"
+            android:textAllCaps="false"
+            android:textColor="@color/colorP4" />
+
+    </RelativeLayout>
+</FrameLayout>
