@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity
 
     public void ocLoginNormal(View view) {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.putExtra("frgToLoad", 0);
         startActivity(intent);
         finish();
     }

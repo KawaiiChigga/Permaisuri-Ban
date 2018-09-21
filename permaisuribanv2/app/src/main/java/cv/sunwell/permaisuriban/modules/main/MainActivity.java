@@ -90,7 +90,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navigation.setOnNavigationItemSelectedListener(this);
         actionBar = getSupportActionBar ();
         actionBar.setBackgroundDrawable (new ColorDrawable (Color.parseColor ("#EF1724")));
-        loadFragment(new HomeFragment ());
+        int intentFragment = getIntent().getExtras().getInt("frgToLoad", 0);
+
+        if(intentFragment == 1){
+            loadFragment(new CartFragment ());
+            navigation.setSelectedItemId(R.id.navigation_cart);
+        }
+        else{
+            loadFragment(new HomeFragment ());
+        }
     }
 
 }

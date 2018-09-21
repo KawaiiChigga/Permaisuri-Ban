@@ -77,19 +77,19 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
 
     ArrayList<Item> getItemArrayList ()
     {
-        itemArrayList.add (new Item ("GT RADIAL", "GT Champiro GTX Pro 185", 960000, R.drawable.tire_1, 500, "Passenger"));
-        itemArrayList.add (new Item ("GT RADIAL", "GT Chomporo GTX Pro 186", 860000, R.drawable.tire_1, 250, "Passenger"));
-        itemArrayList.add (new Item ("DUNLOP", "CS5 Ultra Touring", 125000, R.drawable.tire_2, 300, "High Perfomance"));
-        itemArrayList.add (new Item ("BRIDGESTONE", "DURAVIS 1", 1125000, R.drawable.tire_3, 400, "Bias"));
+        itemArrayList.add (new Item (33, "GT RADIAL", "GT Champiro GTX Pro 185", 960000, R.drawable.tire_1, 500, "Passenger"));
+        itemArrayList.add (new Item (34, "GT RADIAL", "GT Chomporo GTX Pro 186", 860000, R.drawable.tire_1, 250, "Passenger"));
+        itemArrayList.add (new Item (35, "DUNLOP", "CS5 Ultra Touring", 125000, R.drawable.tire_2, 300, "High Perfomance"));
+        itemArrayList.add (new Item (36, "BRIDGESTONE", "DURAVIS 1", 1125000, R.drawable.tire_3, 400, "Bias"));
         Collections.sort(itemArrayList);
         return itemArrayList;
     }
 
     ArrayList<Item> getBrandList ()
     {
-        brandList.add (new Item ("GT", R.drawable.gtlogo, "abc"));
-        brandList.add (new Item ("Bridgestone", R.drawable.bridgestonelogo, "abc"));
-        brandList.add (new Item ("Dunlop", R.drawable.dunloplogo, "abc"));
+        brandList.add (new Item (1, "GT", R.drawable.gtlogo, "abc"));
+        brandList.add (new Item (2, "Bridgestone", R.drawable.bridgestonelogo, "abc"));
+        brandList.add (new Item (3, "Dunlop", R.drawable.dunloplogo, "abc"));
         return brandList;
     }
 

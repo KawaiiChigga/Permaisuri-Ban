@@ -26,16 +26,6 @@ public class AccountFragment extends Fragment
     private View view;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private AccountAdapter accountAdapter;
-    private String[] menuNames = {"Edit Profile",
-            "Shipping \n\n Current Method : Delivery & Installation \n Method Price : Rp.150.000" ,
-            "Address \n\n First Address : Jalan Dadali No.44 \n Second Address : Jalan Jendral Sudirman No.443",
-            "Bank Account \n\n Bank Name : BCA \n Account Number : 2818122123",
-            "E-mail \n\n Current Email : dadali44@gmail.com \n Recovery Email : richardandreas21@gmail.com",
-            "Password",
-            "Notifications",
-            "Logout"};
-    private ArrayList<String> listMenu = new ArrayList<> ();
     Context context;
     String username, name, address, email;
     SharedPreferences sharedPreferences;
@@ -46,7 +36,6 @@ public class AccountFragment extends Fragment
     {
         context = getActivity ().getBaseContext ();
         view = inflater.inflate (R.layout.fragment_account, container, false);
-        recyclerView = (RecyclerView) view.findViewById (R.id.rvAccount);
         tvName = (TextView) view.findViewById (R.id.tvAccountName);
 
         sharedPreferences = getActivity ().getSharedPreferences ("loginPref", Context.MODE_PRIVATE);
@@ -61,11 +50,7 @@ public class AccountFragment extends Fragment
             tvAddress.setText (email);
         }
 
-        layoutManager = new LinearLayoutManager ((MainActivity) getActivity ());
-        listMenu.addAll (Arrays.asList (menuNames));
-        accountAdapter = new AccountAdapter (listMenu, context);
-        recyclerView.setAdapter (accountAdapter);
-        recyclerView.setLayoutManager (layoutManager);
+        layoutManager = new LinearLayoutManager(getActivity ());
         return view;
     }
 

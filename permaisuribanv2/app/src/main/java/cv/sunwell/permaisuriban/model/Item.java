@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 public class Item implements Comparable<Item>
 {
+    private int id;
     private String name;
     private int price;
     private String brand;
@@ -13,22 +14,32 @@ public class Item implements Comparable<Item>
     private int imgURL;
     private int count;
 
-    public Item (String _brand, int _imgURL, String _description)
+    public Item (int _id, String _brand, int _imgURL, String _description)
     {
+        id = _id;
         brand = _brand;
         imgURL = _imgURL;
         description = _description;
     }
 
 
-    public Item (String _brand, String _name, int _price, int _imgURL, int _count, String _category)
+    public Item (int _id, String _brand, String _name, int _price, int _imgURL, int _count, String _category)
     {
+        id = _id;
         brand = _brand;
         name = _name;
         price = _price;
         imgURL = _imgURL;
         count = _count;
         category = _category;
+    }
+
+    public int getId (){
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription ()
