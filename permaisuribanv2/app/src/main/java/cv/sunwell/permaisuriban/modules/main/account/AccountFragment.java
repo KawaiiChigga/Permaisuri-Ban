@@ -1,6 +1,7 @@
 package cv.sunwell.permaisuriban.modules.main.account;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,12 +12,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import cv.sunwell.permaisuriban.R;
+import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
 
 public class AccountFragment extends Fragment
@@ -27,6 +30,7 @@ public class AccountFragment extends Fragment
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     Context context;
+    Button logoutbutton;
     String username, name, address, email;
     SharedPreferences sharedPreferences;
 
@@ -50,7 +54,16 @@ public class AccountFragment extends Fragment
             tvAddress.setText (email);
         }
 
+        logoutbutton = view.findViewById(R.id.btnLogOut);
+        logoutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ocLogout();
+            }
+        });
+
         layoutManager = new LinearLayoutManager(getActivity ());
+
         return view;
     }
 
@@ -59,6 +72,10 @@ public class AccountFragment extends Fragment
         super.onResume ();
 
         ((MainActivity) getActivity ()).setActionBarTitle (R.string.title_account);
+    }
+
+    public void ocLogout() {
+        ((MainActivity) getActivity ()).onLogout();
     }
 
 }

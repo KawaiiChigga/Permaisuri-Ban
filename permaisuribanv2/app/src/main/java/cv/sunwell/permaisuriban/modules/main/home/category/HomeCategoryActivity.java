@@ -24,6 +24,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
     ArrayList<Item> itemArrayList = new ArrayList<> ();
     ArrayList<Item> brandList = new ArrayList<> ();
     ArrayList<Item> filterList = new ArrayList<> ();
+    SearchView searchView;
     HomeCategoryAdapter homeCategoryAdapter;
     HomeBrandAdapter homeBrandAdapter;
     Toolbar toolbar;
@@ -98,7 +99,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
     {
         getMenuInflater ().inflate (R.menu.menu_items, menu);
         MenuItem menuItem = menu.findItem (R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView (menuItem);
+        searchView = (SearchView) MenuItemCompat.getActionView (menuItem);
         searchView.setOnQueryTextListener (this);
         return true;
     }
@@ -112,6 +113,12 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
     @Override
     public boolean onQueryTextChange (String newText)
     {
+        SetSearch(newText);
+        return true;
+    }
+
+    public void SetSearch (String newText)
+    {
         newText = newText.toLowerCase ();
         ArrayList<Item> newList = new ArrayList<> ();
         for (Item item : filterList) {
@@ -121,18 +128,20 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
             }
         }
         homeCategoryAdapter.setFilter (newList);
-        return true;
     }
 
     public boolean FilterBrandEnable (String newText)
     {
         newText = newText.toLowerCase ();
+
         for (Item item : itemArrayList) {
             String brand = item.getBrand ().toLowerCase ();
-            if (brand.contains (newText)) {
+            String name = item.getName().toLowerCase();
+            if (brand.contains (newText) && name.contains(searchView.getQuery().toString())) {
                 filterList.add (item);
             }
         }
+
         Collections.sort(filterList);
         homeCategoryAdapter.setFilter (filterList);
         return true;
@@ -143,7 +152,8 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         newText = newText.toLowerCase ();
         for (Item item : itemArrayList) {
             String brand = item.getBrand ().toLowerCase ();
-            if (brand.contains (newText)) {
+            String name = item.getName().toLowerCase();
+            if (brand.contains (newText) && name.contains(searchView.getQuery().toString())) {
                 filterList.remove (item);
             }
         }

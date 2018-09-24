@@ -1,13 +1,12 @@
 package cv.sunwell.permaisuriban.networking;
 
+import cv.sunwell.permaisuriban.model.JSON.Login;
 import retrofit2.Call;
-import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 
-public class ApiInterface
+public interface ApiInterface
 {
-//    @FormUrlEncoded
-//    @POST("/login")
-//    Call<User> getUserId(@Path ("userid") String userid)
+    @POST("login")
+    Call<Login> loginRequest(@Body Login login);
 }

@@ -2,6 +2,7 @@ package cv.sunwell.permaisuriban.modules.main;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.helper.BottomNavigationHelper;
+import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
 import cv.sunwell.permaisuriban.modules.main.account.AccountFragment;
 import cv.sunwell.permaisuriban.modules.main.cart.CartFragment;
 import cv.sunwell.permaisuriban.modules.main.favourite.FavouriteFragment;
@@ -99,6 +101,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         else{
             loadFragment(new HomeFragment ());
         }
+    }
+
+    public void onLogout(){
+        Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

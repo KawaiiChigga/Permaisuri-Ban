@@ -8,10 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 //http://178.128.220.10
 public class ApiClient
 {
-    public static final String BASE_URL = "http://178.128.220.10/";
     public static Retrofit retrofit = null;
 
-    public static Retrofit getApiClient ()
+    public static Retrofit getApiClient (String baseUrl)
     {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor ();
         interceptor.setLevel (HttpLoggingInterceptor.Level.BODY);
@@ -19,7 +18,7 @@ public class ApiClient
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder ()
-                    .baseUrl (BASE_URL)
+                    .baseUrl (baseUrl)
                     .client (client)
                     .addConverterFactory (GsonConverterFactory.create ())
                     .build ();
