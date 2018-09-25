@@ -33,15 +33,6 @@ public class EditActivity extends AppCompatActivity
         name = getIntent ().getStringExtra ("name");
         setTitle (name);
 
-        switch (name) {
-            case "E-mail":
-                currentOp.setText ("Current E-mail : ");
-                currentOpValue.setText ("dadali44@gmail.com");
-                insertNewOp.setText ("PLEASE INSERT NEW E-MAIL");
-                newOp.setText ("New E-mail : ");
-                currentPass.setText ("Current Password : ");
-                break;
-        }
 
 
     }

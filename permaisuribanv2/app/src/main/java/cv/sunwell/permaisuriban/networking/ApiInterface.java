@@ -1,6 +1,11 @@
 package cv.sunwell.permaisuriban.networking;
 
-import cv.sunwell.permaisuriban.model.JSON.Login;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
+
+import cv.sunwell.permaisuriban.model.JSON.LoginResponse;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -8,5 +13,8 @@ import retrofit2.http.POST;
 public interface ApiInterface
 {
     @POST("login")
-    Call<Login> loginRequest(@Body Login login);
+    Call<JsonObject> loginRequest(@Body JsonObject js);
+
+    //@POST("/login")
+    //void loginRequest(@Body TypedInput body, Callback<Response> callback);
 }

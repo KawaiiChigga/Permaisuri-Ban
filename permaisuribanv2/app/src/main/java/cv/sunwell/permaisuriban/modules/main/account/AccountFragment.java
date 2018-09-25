@@ -15,12 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import cv.sunwell.permaisuriban.R;
-import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
+import cv.sunwell.permaisuriban.modules.main.account.edit.EditActivity;
 
 public class AccountFragment extends Fragment
 {
@@ -30,7 +27,8 @@ public class AccountFragment extends Fragment
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     Context context;
-    Button logoutbutton;
+    Button logoutButton;
+    Button editButton;
     String username, name, address, email;
     SharedPreferences sharedPreferences;
 
@@ -54,14 +52,21 @@ public class AccountFragment extends Fragment
             tvAddress.setText (email);
         }
 
-        logoutbutton = view.findViewById(R.id.btnLogOut);
-        logoutbutton.setOnClickListener(new View.OnClickListener() {
+        logoutButton = view.findViewById(R.id.btnLogOut);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ocLogout();
             }
         });
 
+        editButton = view.findViewById(R.id.btnEdit);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ocEditProfile();
+            }
+        });
         layoutManager = new LinearLayoutManager(getActivity ());
 
         return view;
@@ -76,6 +81,11 @@ public class AccountFragment extends Fragment
 
     public void ocLogout() {
         ((MainActivity) getActivity ()).onLogout();
+    }
+
+    public void ocEditProfile(){
+        Intent intent = new Intent(context, EditActivity.class);
+        startActivity(intent);
     }
 
 }

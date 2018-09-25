@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.google.gson.JsonObject;
 
 import cv.sunwell.permaisuriban.R;
-import cv.sunwell.permaisuriban.model.JSON.Login;
 import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
 import cv.sunwell.permaisuriban.networking.ApiInterface;
@@ -57,31 +56,35 @@ public class LoginActivity extends AppCompatActivity
     }
 
     private void requestLogin(){
-        Login loginInfo = new Login(etLogUsername.getText().toString(), etLogPassword.getText().toString());
-        JsonObject jsonObject = new JsonObject();
-        Call<Login> call = apiInterface.loginRequest(loginInfo);
-        call.enqueue(new Callback<Login>() {
-                    @Override
-                    public void onResponse(Call<Login> call, Response<Login> response) {
-                         if (response.body().isSuccess()){
-                             Toast.makeText(LoginActivity.this, "Yay! Id : " + response.body().getId(), Toast.LENGTH_SHORT).show();
-                             Toast.makeText(mContext, etLogUsername.getText().toString() + "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
-                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                             intent.putExtra("frgToLoad", 0);
-                             startActivity(intent);
-                             loading.dismiss();
-                             finish();
-                         } else {
-                                loading.dismiss();
-                                    Toast.makeText(mContext, "Incorrect username or password", Toast.LENGTH_SHORT).show();
-                         }
-                    }
+        //LoginResponse loginInfo = new LoginResponse(etLogUsername.getText().toString(), etLogPassword.getText().toString());
+        JsonObject joCred = new JsonObject();
+        joCred.addProperty("username", etLogUsername.getText().toString());
+        joCred.addProperty("password", etLogPassword.getText().toString());
+
+        Call<JsonObject> call = apiInterface.loginRequest(joCred);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                 if (response.body().get("success").getAsBoolean()) {
+                     Toast.makeText(LoginActivity.this, "Yay! Id : " + response.body().get("userid"), Toast.LENGTH_SHORT).show();
+                     Toast.makeText(mContext, etLogUsername.getText().toString() + " berhasil login!", Toast.LENGTH_SHORT).show();
+                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                     intent.putExtra("frgToLoad", 0);
+                     startActivity(intent);
+                     loading.dismiss();
+                     finish();
+                 }
+                 else {
+                        loading.dismiss();
+                            Toast.makeText(mContext, "Incorrect username or password", Toast.LENGTH_SHORT).show();
+                 }
+            }
 
             @Override
-            public void onFailure(Call<Login> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Error : " + t.toString(), Toast.LENGTH_SHORT).show();
                 loading.dismiss();
             }
-                });
+        });
     }
 }
