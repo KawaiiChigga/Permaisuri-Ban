@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import cv.sunwell.permaisuriban.R;
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                  if (response.body().get("success").getAsBoolean()) {
                      Toast.makeText(LoginActivity.this, "Yay! Id : " + response.body().get("userid"), Toast.LENGTH_SHORT).show();
-                     Toast.makeText(mContext, etLogUsername.getText().toString() + " berhasil login!", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(mContext, response.body().get("message").toString(), Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                      intent.putExtra("frgToLoad", 0);
                      startActivity(intent);
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity
                  }
                  else {
                         loading.dismiss();
-                            Toast.makeText(mContext, "Incorrect username or password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Incorrect username or password", Toast.LENGTH_SHORT).show();
                  }
             }
 

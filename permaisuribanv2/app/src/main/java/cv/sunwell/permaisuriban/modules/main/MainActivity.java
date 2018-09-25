@@ -94,17 +94,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         actionBar.setBackgroundDrawable (new ColorDrawable (Color.parseColor ("#EF1724")));
         int intentFragment = getIntent().getExtras().getInt("frgToLoad", 0);
 
-        if(intentFragment == 1){
-            loadFragment(new CartFragment ());
-            navigation.setSelectedItemId(R.id.navigation_cart);
-        }
-        else{
-            loadFragment(new HomeFragment ());
+        switch (intentFragment){
+            case 0 : loadFragment(new HomeFragment ()); break;
+            case 1 : loadFragment(new CartFragment ()); navigation.setSelectedItemId(R.id.navigation_cart); break;
+            case 4 : loadFragment(new AccountFragment ()); navigation.setSelectedItemId(R.id.navigation_account); break;
         }
     }
 
     public void onLogout(){
         Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }

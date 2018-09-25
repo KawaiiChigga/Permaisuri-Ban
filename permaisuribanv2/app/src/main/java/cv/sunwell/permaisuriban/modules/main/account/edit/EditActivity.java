@@ -1,39 +1,43 @@
 package cv.sunwell.permaisuriban.modules.main.account.edit;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 import cv.sunwell.permaisuriban.R;
+import cv.sunwell.permaisuriban.modules.main.MainActivity;
 
 public class EditActivity extends AppCompatActivity
 {
-    TextView currentOp, newOp, currentPass, currentOpValue, insertNewOp;
-    EditText newOpValue, currentOpPassword;
-    String name;
+    Button btnSaveEdit;
 
     @Override
     protected void onCreate (Bundle savedInstanceState)
     {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_edit);
-        currentOp = (TextView) findViewById (R.id.tvCurrentOp);
-        currentOpValue = (TextView) findViewById (R.id.tvCurrentOpValue);
-        newOp = (TextView) findViewById (R.id.tvNewOp);
-        currentPass = (TextView) findViewById (R.id.tvCurrentOpPass);
-        insertNewOp = (TextView) findViewById (R.id.tvInsertNew);
+        setTitle ("Edit Profile");
 
+        btnSaveEdit = findViewById(R.id.btnSaveEdit);
 
-        newOpValue = (EditText) findViewById (R.id.etNewOpValue);
-        currentOpPassword = (EditText) findViewById (R.id.etCurrentOpPassValue);
+        btnSaveEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveExit();
+            }
+        });
+    }
 
-        name = getIntent ().getStringExtra ("name");
-        setTitle (name);
-
-
-
+    private void saveExit(){
+        Intent intent = new Intent (EditActivity.this, MainActivity.class);
+        intent.putExtra("frgToLoad", 4);
+        startActivity (intent);
+        finish ();
     }
 }

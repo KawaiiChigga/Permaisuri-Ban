@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
-import cv.sunwell.permaisuriban.model.JSON.LoginResponse;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
