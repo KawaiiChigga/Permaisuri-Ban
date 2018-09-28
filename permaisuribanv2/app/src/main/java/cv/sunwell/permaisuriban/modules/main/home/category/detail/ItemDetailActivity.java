@@ -37,6 +37,7 @@ public class ItemDetailActivity extends AppCompatActivity
     TextView tvDetailDescription;
     TextView tvDetailCount;
     Button btnItemDetailBuy;
+    Button btnItemDetailFav;
 
     @Override
     protected void onCreate (@Nullable Bundle savedInstanceState)
@@ -60,6 +61,7 @@ public class ItemDetailActivity extends AppCompatActivity
         tvDetailDescription = findViewById(R.id.tvItemDetailDescription);
         tvDetailCount = findViewById(R.id.tvItemDetailStockCount);
         btnItemDetailBuy = findViewById(R.id.btnItemDetailBuy);
+        btnItemDetailFav = findViewById(R.id.btnItemDetailFav);
 
         tvDetailName.setText(name);
         tvDetailPrice.setText("Rp. " + price);
@@ -74,10 +76,20 @@ public class ItemDetailActivity extends AppCompatActivity
                 showAddDialog();
             }
         });
+        btnItemDetailFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToFavorite();
+            }
+        });
     }
 
     public void addSomething(){
         Toast.makeText(ItemDetailActivity.this, "Tambah", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addToFavorite(){
+        Toast.makeText(ItemDetailActivity.this, "Ditambah ke favorit!", Toast.LENGTH_SHORT).show();
     }
 
     public void addSomethingGo(){

@@ -2,9 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="225dp">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvFavItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
@@ -12,20 +13,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
-            >
+            android:padding="5dp">
 
             <ImageView
-                android:id="@+id/ivFavItemImage"
+                android:id="@+id/ivFavImage"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="#FFFFFF"
                 android:scaleType="centerCrop" />
 
             <TextView
-                android:id="@+id/tvFavItemBrand"
+                android:id="@+id/tvFavBrand"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
@@ -35,31 +35,22 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvFavItemName"
+                android:id="@+id/tvFavName"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:text="Item Name"
                 android:textColor="#000000"
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/tvFavItemPrice"
+                android:id="@+id/tvFavPrice"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Item Price"
                 android:textColor="#0B3C5A"
                 android:textSize="13sp" />
-
-            <Button
-                android:id="@+id/btnFavBuy"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/colorP2"
-                android:text="BUY"
-                android:textColor="#FFFFFF" />
-
 
         </LinearLayout>
 

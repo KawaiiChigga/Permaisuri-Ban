@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         textView.setText (title);
     }
 
-
     private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager()

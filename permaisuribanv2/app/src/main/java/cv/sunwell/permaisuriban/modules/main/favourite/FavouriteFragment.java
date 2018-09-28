@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Item;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
+import cv.sunwell.permaisuriban.modules.main.dialog.FavoriteDialogFragment;
 
 public class FavouriteFragment extends Fragment implements SearchView.OnQueryTextListener
 {
@@ -39,7 +42,7 @@ public class FavouriteFragment extends Fragment implements SearchView.OnQueryTex
         recyclerView = (RecyclerView) view.findViewById (R.id.rvFavourite);
         layoutManager = new GridLayoutManager ((MainActivity) getActivity (), 3);
         insertItem ();
-        favouriteAdapter = new FavouriteAdapter (listItem, getActivity ());
+        favouriteAdapter = new FavouriteAdapter (listItem, getActivity (), FavouriteFragment.this);
         recyclerView.setAdapter (favouriteAdapter);
         recyclerView.setLayoutManager (layoutManager);
 
@@ -105,6 +108,26 @@ public class FavouriteFragment extends Fragment implements SearchView.OnQueryTex
         return true;
     }
 
+    public void showFavoriteDialog(String name, int imgUrl, int position){
+        FavoriteDialogFragment favDialog = new FavoriteDialogFragment();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        Bundle args = new Bundle();
+        args.putString("name", name);
+        args.putInt("imgUrl", imgUrl);
+        args.putInt("position", position);
+        favDialog.setArguments(args);
+        favDialog.setTargetFragment(FavouriteFragment.this, 1338);
+        favDialog.show(fm, "dialog");
+
+    }
+
+    public void goItem(int pos) {
+        favouriteAdapter.putSend(pos);
+    }
+
+    public void deleteItem(int pos) {
+        favouriteAdapter.deleteFavItem(pos);
+    }
 
 
 }
