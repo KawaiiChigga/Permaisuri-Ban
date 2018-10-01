@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,14 +23,14 @@ import cv.sunwell.permaisuriban.modules.main.account.edit.EditActivity;
 public class AccountFragment extends Fragment
 {
 
-    private TextView tvName, tvAddress;
+    private TextView tvName, tvEmail, tvPhone;
     private View view;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     Context context;
     Button logoutButton;
     Button editButton;
-    String username, name, address, email;
+    String name, address, email;
     SharedPreferences sharedPreferences;
 
     @Nullable
@@ -39,18 +40,18 @@ public class AccountFragment extends Fragment
         context = getActivity ().getBaseContext ();
         view = inflater.inflate (R.layout.fragment_account, container, false);
         tvName = (TextView) view.findViewById (R.id.tvAccountName);
+        tvEmail = view.findViewById(R.id.tvAccountEmail);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        name = sharedPreferences.getString ("name", "");
+        email = sharedPreferences.getString("email", "");
 
-        sharedPreferences = getActivity ().getSharedPreferences ("loginPref", Context.MODE_PRIVATE);
-        username = sharedPreferences.getString ("userName", "");
-        email = sharedPreferences.getString ("email", "");
-//        name = ((sharedPreferences.getString ("firstName",""))+" "+sharedPreferences.getString ("lastName",""));
-//        address = sharedPreferences.getString ("address","");
-
-
-        if (username.length () != 0) {
-            tvName.setText (username);
-            tvAddress.setText (email);
+        if(!name.equalsIgnoreCase(""))
+        {
+            name = name + "  Sethi";  /* Edit the value here*/
         }
+
+        tvName.setText(name);
+        tvEmail.setText(email);
 
         logoutButton = view.findViewById(R.id.btnLogOut);
         logoutButton.setOnClickListener(new View.OnClickListener() {

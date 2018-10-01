@@ -5,16 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
+import cv.sunwell.permaisuriban.modules.main.StringConverter;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
 import cv.sunwell.permaisuriban.networking.ApiInterface;
 import cv.sunwell.permaisuriban.networking.ApiUtils;
@@ -68,9 +69,11 @@ public class LoginActivity extends AppCompatActivity
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                  if (response.body().get("success").getAsBoolean()) {
                      Toast.makeText(LoginActivity.this, "Yay! Id : " + response.body().get("userid"), Toast.LENGTH_SHORT).show();
-                     Toast.makeText(mContext, response.body().get("message").toString(), Toast.LENGTH_SHORT).show();
+                     //Toast.makeText(mContext, response.body().get("message").toString(), Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                      intent.putExtra("frgToLoad", 0);
+                     intent.putExtra("token", StringConverter.removeQuotation(response.body().get("remember_token").toString()));
+                     intent.putExtra("userid", response.body().get("userid").getAsInt());
                      startActivity(intent);
                      loading.dismiss();
                      finish();
@@ -88,4 +91,7 @@ public class LoginActivity extends AppCompatActivity
             }
         });
     }
+
+
+
 }
