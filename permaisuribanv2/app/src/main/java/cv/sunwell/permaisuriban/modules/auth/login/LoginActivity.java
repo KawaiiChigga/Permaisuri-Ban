@@ -3,6 +3,8 @@ package cv.sunwell.permaisuriban.modules.auth.login;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity
     ProgressDialog loading;
     EditText etLogUsername;
     EditText etLogPassword;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     public void onBackPressed ()
@@ -72,8 +76,7 @@ public class LoginActivity extends AppCompatActivity
                      //Toast.makeText(mContext, response.body().get("message").toString(), Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                      intent.putExtra("frgToLoad", 0);
-                     intent.putExtra("token", StringConverter.removeQuotation(response.body().get("remember_token").toString()));
-                     intent.putExtra("userid", response.body().get("userid").getAsInt());
+                     saveCredentials(StringConverter.removeQuotation(response.body().get("remember_token").toString()), response.body().get("userid").getAsInt());
                      startActivity(intent);
                      loading.dismiss();
                      finish();
@@ -90,6 +93,14 @@ public class LoginActivity extends AppCompatActivity
                 loading.dismiss();
             }
         });
+    }
+
+    private void saveCredentials(String token, int userid){
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
+        editor.putString("token", token);
+        editor.putInt("userid", userid);
+        editor.apply();
     }
 
 

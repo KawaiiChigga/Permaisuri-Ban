@@ -26,26 +26,26 @@
         app:srcCompat="@drawable/ic_email" />
 
     <ImageView
-        android:id="@+id/ivRegPhone"
+        android:id="@+id/ivRegFirstname"
         android:layout_width="@dimen/width_icon"
         android:layout_height="@dimen/height_icon"
-        android:layout_alignParentTop="true"
-        android:layout_alignTop="@+id/etRegPhonenumber"
-        android:layout_alignLeft="@+id/ivRegEmail"
         android:layout_alignStart="@+id/ivRegEmail"
+        android:layout_alignLeft="@+id/ivRegEmail"
+        android:layout_alignTop="@+id/etRegFirstname"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="293dp"
-        app:srcCompat="@drawable/ic_phone" />
+        app:srcCompat="@drawable/ic_firstname" />
 
     <ImageView
-        android:id="@+id/ivRegAddress"
+        android:id="@+id/ivRegIdNo"
         android:layout_width="@dimen/width_icon"
         android:layout_height="@dimen/height_icon"
-        android:layout_alignParentTop="true"
-        android:layout_alignTop="@+id/etRegAddress"
+        android:layout_alignStart="@+id/ivRegFirstname"
         android:layout_alignLeft="@+id/ivRegEmail"
-        android:layout_alignStart="@+id/ivRegPhone"
+        android:layout_alignTop="@+id/etRegIdNo"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="349dp"
-        app:srcCompat="@drawable/ic_address" />
+        app:srcCompat="@drawable/ic_identification" />
 
     <ImageView
         android:id="@+id/ivRegUsername"
@@ -54,7 +54,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignTop="@+id/etRegUsername"
         android:layout_alignLeft="@+id/ivRegEmail"
-        android:layout_alignStart="@+id/ivRegAddress"
+        android:layout_alignStart="@+id/ivRegIdNo"
         android:layout_marginTop="405dp"
         app:srcCompat="@drawable/ic_username" />
 
@@ -79,7 +79,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/etRegPhonenumber"
+        android:id="@+id/etRegFirstname"
         android:layout_width="@dimen/width_et_register"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/etRegEmail"
@@ -91,15 +91,15 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/etRegAddress"
+        android:id="@+id/etRegIdNo"
         android:layout_width="@dimen/width_et_register"
         android:layout_height="wrap_content"
+        android:layout_below="@id/etRegFirstname"
         android:layout_alignLeft="@+id/etRegEmail"
         android:layout_centerVertical="true"
-        android:layout_below="@id/etRegPhonenumber"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="address"
+        android:hint="citizen id"
         android:inputType="textPersonName" />
 
     <EditText
@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/etRegEmail"
         android:layout_centerVertical="true"
-        android:layout_below="@id/etRegAddress"
+        android:layout_below="@id/etRegIdNo"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="username"

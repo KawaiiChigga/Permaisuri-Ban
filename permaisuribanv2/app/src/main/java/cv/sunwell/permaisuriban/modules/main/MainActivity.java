@@ -113,12 +113,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         actionBar = getSupportActionBar ();
         actionBar.setBackgroundDrawable (new ColorDrawable (Color.parseColor ("#EF1724")));
         int intentFragment = getIntent().getExtras().getInt("frgToLoad", 0);
-        userid = getIntent().getExtras().getInt("userid", 0);
-        token = getIntent().getExtras().getString("token");
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         editor = sharedPreferences.edit();
-        editor.putString("token", token);
-        editor.apply();
+        userid = sharedPreferences.getInt("userid", 0);
+        token = sharedPreferences.getString("token", "");
+
         switch (intentFragment){
             case 0 : getLoginUser(token,userid); loadFragment(new HomeFragment ()); break;
             case 1 : loadFragment(cartFragment); navigation.setSelectedItemId(R.id.navigation_cart); break;
@@ -130,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public void onLogout(){
         editor.remove("token");
+        editor.apply();
         Intent intent = new Intent(MainActivity.this, AuthActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -145,14 +145,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 if (response.body().get("success").getAsBoolean()) {
                     JsonObject message = response.body().get("message").getAsJsonObject();
                     loading.dismiss();
-                    String firstname = message.get("firstname").toString();
-                    String lastname = message.get("lastname").toString();
-                    editor.putString("name",StringConverter.removeQuotation(firstname + " " + lastname));
+                    String firstname = StringConverter.removeQuotation(message.get("firstname").toString());
+                    String lastname = StringConverter.removeQuotation(message.get("lastname").toString());
+                    if(lastname.equalsIgnoreCase("null")){
+                        lastname = "";
+                    }
+                    editor.putString("name",firstname + " " + lastname);
+                    editor.putString("phone", StringConverter.removeQuotation(message.get("phone").toString()));
                     editor.putString("email", StringConverter.removeQuotation(message.get("email").toString()));
                     editor.apply();
                 } else {
                     loading.dismiss();
-                    Toast.makeText(MainActivity.this, "Error : " + response.body().get("message"), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Token expired, please login again.", Toast.LENGTH_SHORT).show();
+                    onLogout();
                 }
             }
 
@@ -160,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 loading.dismiss();
                 Toast.makeText(MainActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                onLogout();
             }
         });
     }

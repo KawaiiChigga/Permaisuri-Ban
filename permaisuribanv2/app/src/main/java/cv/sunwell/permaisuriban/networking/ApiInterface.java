@@ -21,6 +21,8 @@ public interface ApiInterface
     @GET("customer/{pathid}")
     Call<JsonObject> getUser(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid);
 
+    @POST("register")
+    Call<JsonObject> registerUser(@Body JsonObject js);
     //@POST("/login")
     //void loginRequest(@Body TypedInput body, Callback<Response> callback);
 }

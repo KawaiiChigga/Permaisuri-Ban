@@ -30,7 +30,7 @@ public class AccountFragment extends Fragment
     Context context;
     Button logoutButton;
     Button editButton;
-    String name, address, email;
+    String name, phone, email;
     SharedPreferences sharedPreferences;
 
     @Nullable
@@ -41,17 +41,15 @@ public class AccountFragment extends Fragment
         view = inflater.inflate (R.layout.fragment_account, container, false);
         tvName = (TextView) view.findViewById (R.id.tvAccountName);
         tvEmail = view.findViewById(R.id.tvAccountEmail);
+        tvPhone = view.findViewById(R.id.tvAccountPhone);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         name = sharedPreferences.getString ("name", "");
         email = sharedPreferences.getString("email", "");
-
-        if(!name.equalsIgnoreCase(""))
-        {
-            name = name + "  Sethi";  /* Edit the value here*/
-        }
+        phone = sharedPreferences.getString("phone", "");
 
         tvName.setText(name);
         tvEmail.setText(email);
+        tvPhone.setText(phone);
 
         logoutButton = view.findViewById(R.id.btnLogOut);
         logoutButton.setOnClickListener(new View.OnClickListener() {
