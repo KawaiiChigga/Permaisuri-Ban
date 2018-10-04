@@ -82,12 +82,12 @@
         android:id="@+id/etRegFirstname"
         android:layout_width="@dimen/width_et_register"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etRegEmail"
         android:layout_below="@id/etRegEmail"
+        android:layout_alignLeft="@+id/etRegEmail"
         android:layout_centerVertical="true"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="phone number"
+        android:hint="first name"
         android:inputType="textPersonName" />
 
     <EditText
