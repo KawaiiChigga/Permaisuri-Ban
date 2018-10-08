@@ -73,7 +73,7 @@
         android:text="Phone" />
 
     <android.support.design.widget.TextInputEditText
-        android:id="@+id/etAddressEdit"
+        android:id="@+id/etDobEdit"
         android:layout_width="343dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ivProfileEdit"
@@ -85,7 +85,7 @@
         app:errorEnabled="true"/>
 
     <TextView
-        android:id="@+id/tvDOBEdit"
+        android:id="@+id/tvDobEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ivProfileEdit"
