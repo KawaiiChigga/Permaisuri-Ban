@@ -18,7 +18,8 @@ import android.widget.TextView;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
-import cv.sunwell.permaisuriban.modules.main.account.edit.EditActivity;
+import cv.sunwell.permaisuriban.modules.main.account.edit.EditProfileActivity;
+import cv.sunwell.permaisuriban.modules.main.account.edit.address.EditAddressActivity;
 
 public class AccountFragment extends Fragment
 {
@@ -28,7 +29,7 @@ public class AccountFragment extends Fragment
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     Context context;
-    Button logoutButton;
+    Button logoutButton, addressButton;
     Button editButton;
     String name, phone, email;
     SharedPreferences sharedPreferences;
@@ -52,10 +53,19 @@ public class AccountFragment extends Fragment
         tvPhone.setText(phone);
 
         logoutButton = view.findViewById(R.id.btnLogOut);
+        addressButton = view.findViewById(R.id.btnManageAddress);
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ocLogout();
+            }
+        });
+
+        addressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ocAddress();
             }
         });
 
@@ -83,7 +93,12 @@ public class AccountFragment extends Fragment
     }
 
     public void ocEditProfile(){
-        Intent intent = new Intent(context, EditActivity.class);
+        Intent intent = new Intent(context, EditProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void ocAddress(){
+        Intent intent = new Intent(context, EditAddressActivity.class);
         startActivity(intent);
     }
 

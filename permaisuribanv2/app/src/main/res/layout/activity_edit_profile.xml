@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".modules.main.account.edit.EditActivity"
+    tools:context=".modules.main.account.edit.EditProfileActivity"
     android:fillViewport="true">
 
     <ImageView
@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_user2" />
 
     <EditText
-        android:id="@+id/etEmailEdit"
+        android:id="@+id/etFirstNameEdit"
         android:layout_width="343dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ivProfileEdit"
@@ -37,7 +37,7 @@
         android:text="First name" />
 
     <EditText
-        android:id="@+id/etNameEdit"
+        android:id="@+id/etLastNameEdit"
         android:layout_width="343dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ivProfileEdit"
@@ -79,10 +79,10 @@
         android:layout_alignStart="@+id/ivProfileEdit"
         android:layout_alignParentTop="true"
         android:layout_marginTop="350dp"
-        android:hint="DD/MM/YYYY"
+        android:hint="DD-MM-YYYY"
         android:inputType="text"
         android:maxLines="1"
-        app:errorEnabled="true"/>
+        app:errorEnabled="true" />
 
     <TextView
         android:id="@+id/tvDobEdit"

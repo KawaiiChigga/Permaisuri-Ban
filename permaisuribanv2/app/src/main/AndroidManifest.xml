@@ -47,7 +47,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".modules.main.home.category.detail.ItemDetailActivity"/>
-        <activity android:name=".modules.main.account.edit.EditActivity" />
+        <activity android:name=".modules.main.account.edit.EditProfileActivity" />
+        <activity android:name=".modules.main.account.edit.address.EditAddressActivity" />
         <activity android:name=".modules.main.home.type.TypeActivity"></activity>
     </application>
 
