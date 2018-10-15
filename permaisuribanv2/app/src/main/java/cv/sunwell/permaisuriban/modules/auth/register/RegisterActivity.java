@@ -105,13 +105,35 @@ public class RegisterActivity extends AppCompatActivity
                 }
             });
         }
-        else{
-            Toast.makeText(RegisterActivity.this, "Please fill out all fields!", Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     private boolean checkInputs(){
-        return !etRegIdNo.getText().toString().equals("") && !etRegFirstname.getText().toString().equals("") && !etRegEmail.getText().toString().equals("") && !etRegPassword.getText().toString().equals("") && !etRegUsername.getText().toString().equals("");
+        if(!etRegUsername.getText().toString().equals("") && !etRegPassword.getText().toString().equals("") && !etRegEmail.getText().toString().equals("") && !etRegFirstname.getText().toString().equals("") && !etRegIdNo.getText().toString().equals("")){
+            etRegIdNo.setError(null);
+            etRegFirstname.setError(null);
+            etRegPassword.setError(null);
+            etRegEmail.setError(null);
+            etRegUsername.setError(null);
+            return true;
+        }
+        else{
+            if(etRegUsername.getText().toString().equals("")){
+                etRegUsername.setError("Please fill out the field");
+            }
+            if(etRegPassword.getText().toString().equals("")){
+                etRegPassword.setError("Please fill out the field");
+            }
+            if(etRegEmail.getText().toString().equals("")){
+                etRegEmail.setError("Please fill out the field");
+            }
+            if(etRegFirstname.getText().toString().equals("")){
+                etRegFirstname.setError("Please fill out the field");
+            }
+            if(etRegIdNo.getText().toString().equals("")){
+                etRegIdNo.setError("Please fill out the field");
+            }
+
+            return false;
+        }
     }
 }

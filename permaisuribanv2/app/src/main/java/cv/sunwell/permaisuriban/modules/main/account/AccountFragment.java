@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +19,21 @@ import android.widget.TextView;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
+import cv.sunwell.permaisuriban.modules.main.account.edit.EditPasswordActivity;
 import cv.sunwell.permaisuriban.modules.main.account.edit.EditProfileActivity;
 import cv.sunwell.permaisuriban.modules.main.account.edit.address.EditAddressActivity;
 
 public class AccountFragment extends Fragment
 {
 
-    private TextView tvName, tvEmail, tvPhone;
+    private TextView tvName, tvEmail, tvPhone, tvDob;
     private View view;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     Context context;
-    Button logoutButton, addressButton;
+    Button logoutButton, addressButton, passwordButton;
     Button editButton;
-    String name, phone, email;
+    String name, phone, email, birthdate;
     SharedPreferences sharedPreferences;
 
     @Nullable
@@ -47,13 +49,23 @@ public class AccountFragment extends Fragment
         name = sharedPreferences.getString ("name", "");
         email = sharedPreferences.getString("email", "");
         phone = sharedPreferences.getString("phone", "");
+        birthdate = sharedPreferences.getString("birthdate", "");
 
         tvName.setText(name);
         tvEmail.setText(email);
         tvPhone.setText(phone);
+        tvDob.setText(birthdate);
 
         logoutButton = view.findViewById(R.id.btnLogOut);
         addressButton = view.findViewById(R.id.btnManageAddress);
+        passwordButton = view.findViewById(R.id.btnChangePassword);
+
+        passwordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ocPassword();
+            }
+        });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +111,11 @@ public class AccountFragment extends Fragment
 
     public void ocAddress(){
         Intent intent = new Intent(context, EditAddressActivity.class);
+        startActivity(intent);
+    }
+
+    public void ocPassword(){
+        Intent intent = new Intent(context, EditPasswordActivity.class);
         startActivity(intent);
     }
 

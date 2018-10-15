@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     editor.putString("name",firstname + " " + lastname);
                     editor.putString("firstname",firstname);
                     editor.putString("lastname", lastname);
+                    editor.putString("birthdate", StringConverter.removeQuotation(message.get("birthdate").toString()));
                     editor.putString("phone", StringConverter.removeQuotation(message.get("phone").toString()));
                     editor.putString("email", StringConverter.removeQuotation(message.get("email").toString()));
                     editor.apply();
