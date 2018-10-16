@@ -31,8 +31,11 @@ public interface ApiInterface
     @PUT("updateAddress/{pathid}")
     Call<JsonObject> updateAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid, @Body JsonObject js);
 
+    @GET("getAddress/{pathid}")
+    Call<JsonObject> getAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid);
+
     @POST("changePassword/{pathid}")
-    Call<JsonObject> changePassword(@Path("pathid") int pathid, @Body JsonObject js);
+    Call<JsonObject> changePassword(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid, @Body JsonObject js);
 
     @GET("customer/{pathid}")
     Call<JsonObject> getUser(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid);

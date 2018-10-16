@@ -26,14 +26,14 @@ import cv.sunwell.permaisuriban.modules.main.account.edit.address.EditAddressAct
 public class AccountFragment extends Fragment
 {
 
-    private TextView tvName, tvEmail, tvPhone, tvDob;
+    private TextView tvName, tvEmail, tvPhone;
     private View view;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     Context context;
     Button logoutButton, addressButton, passwordButton;
     Button editButton;
-    String name, phone, email, birthdate;
+    String name, phone, email;
     SharedPreferences sharedPreferences;
 
     @Nullable
@@ -49,12 +49,10 @@ public class AccountFragment extends Fragment
         name = sharedPreferences.getString ("name", "");
         email = sharedPreferences.getString("email", "");
         phone = sharedPreferences.getString("phone", "");
-        birthdate = sharedPreferences.getString("birthdate", "");
 
         tvName.setText(name);
         tvEmail.setText(email);
         tvPhone.setText(phone);
-        tvDob.setText(birthdate);
 
         logoutButton = view.findViewById(R.id.btnLogOut);
         addressButton = view.findViewById(R.id.btnManageAddress);

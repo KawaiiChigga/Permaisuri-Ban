@@ -62,11 +62,14 @@ public class EditProfileActivity extends AppCompatActivity
         placeholderFirstname = sharedPreferences.getString ("firstname", "");
         placeholderLastname = sharedPreferences.getString ("lastname", "");
         placeholderPhone = sharedPreferences.getString ("phone", "");
+        placeholderDOB = sharedPreferences.getString("birthdate", "");
+        placeholderDOB = placeholderDOB.substring(8) + "-" + placeholderDOB.substring(5,7) + "-" + placeholderDOB.substring(0,4) ;
         token = sharedPreferences.getString("token", "");
         userid = sharedPreferences.getInt("userid", 0);
         etFirstNameEdit.setText(placeholderFirstname);
         etLastNameEdit.setText(placeholderLastname);
         etPhoneEdit.setText(placeholderPhone);
+        etDobEdit.setText(placeholderDOB);
 
     }
 

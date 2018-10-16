@@ -76,7 +76,7 @@ public class EditPasswordActivity extends AppCompatActivity
 
     private void saveExit(){
         if(checkFormat()==true){
-            //confirmEdit();
+            confirmEdit();
         }
 
     }
@@ -105,45 +105,39 @@ public class EditPasswordActivity extends AppCompatActivity
         return s != null && s.matches("[-+]?\\d*\\.?\\d.");
     }
 
-    /*private void confirmEdit(){
-        final ProgressDialog loading = ProgressDialog.show(EditProfileActivity.this, null, "Harap Tunggu...", true, false);
-        String firstname = etFirstNameEdit.getText().toString();
-        String lastname = etLastNameEdit.getText().toString();
-        String phone = etPhoneEdit.getText().toString();
-        String dob = etDobEdit.getText().toString();
+    private void confirmEdit(){
+        final ProgressDialog loading = ProgressDialog.show(EditPasswordActivity.this, null, "Harap Tunggu...", true, false);
+        String oldpass = etOldPassEdit.getText().toString();
 
         JsonObject joCred = new JsonObject();
-        joCred.addProperty("firstname", firstname);
-        joCred.addProperty("lastname", lastname);
-        joCred.addProperty("phone", phone);
-        joCred.addProperty("birthdate", dob);
+        joCred.addProperty("old_password", oldpass);
+        joCred.addProperty("new_password", newpass);
 
-
-        Call<JsonObject> call = apiInterface.editUser(token, userid, userid, joCred);
+        Call<JsonObject> call = apiInterface.changePassword(token, userid, userid, joCred);
         call.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("success").getAsBoolean()) {
-                    Toast.makeText(EditProfileActivity.this, "Edit berhasil!" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditPasswordActivity.this, "Berhasil merubah password!" , Toast.LENGTH_SHORT).show();
                     //Toast.makeText(mContext, response.body().get("message").toString(), Toast.LENGTH_SHORT).show();
                     loading.dismiss();
-                    Intent intent = new Intent (EditProfileActivity.this, MainActivity.class);
+                    Intent intent = new Intent (EditPasswordActivity.this, MainActivity.class);
                     intent.putExtra("frgToLoad", 0);
                     startActivity (intent);
                     finish ();
                 }
                 else {
                     loading.dismiss();
-                    Toast.makeText(EditProfileActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditPasswordActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(EditProfileActivity.this, "Error : " + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditPasswordActivity.this, "Error : " + t.toString(), Toast.LENGTH_SHORT).show();
                 loading.dismiss();
             }
         });
-    }*/
+    }
 
 }
