@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
 import cv.sunwell.permaisuriban.modules.main.account.edit.EditPasswordActivity;
 import cv.sunwell.permaisuriban.modules.main.account.edit.EditProfileActivity;
-import cv.sunwell.permaisuriban.modules.main.account.edit.address.EditAddressActivity;
+import cv.sunwell.permaisuriban.modules.main.account.edit.address.ManageAddressActivity;
 
 public class AccountFragment extends Fragment
 {
@@ -108,7 +107,7 @@ public class AccountFragment extends Fragment
     }
 
     public void ocAddress(){
-        Intent intent = new Intent(context, EditAddressActivity.class);
+        Intent intent = new Intent(context, ManageAddressActivity.class);
         startActivity(intent);
     }
 

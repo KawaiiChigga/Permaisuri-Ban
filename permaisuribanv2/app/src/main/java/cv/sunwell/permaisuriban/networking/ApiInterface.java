@@ -23,7 +23,7 @@ public interface ApiInterface
     Call<JsonObject> loginRequest(@Body JsonObject js);
 
     @POST("saveAddress/{pathid}")
-    Call<JsonObject> saveAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Body JsonObject js, @Path("pathid") int pathid);
+    Call<JsonObject> saveAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid, @Body JsonObject js);
 
     @DELETE("deleteAddress/{pathid}")
     Call<ResponseBody> deleteAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Query("address_id") int addressid, @Path("pathid") int pathid);
@@ -33,6 +33,12 @@ public interface ApiInterface
 
     @GET("getAddress/{pathid}")
     Call<JsonObject> getAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid);
+
+    @GET("province")
+    Call<JsonObject> getProvince(@Header("remember_token") String remember_token, @Header("userid") int userid);
+
+    @GET("regency/{pathid}")
+    Call<JsonObject> getRegency(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid);
 
     @POST("changePassword/{pathid}")
     Call<JsonObject> changePassword(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid, @Body JsonObject js);

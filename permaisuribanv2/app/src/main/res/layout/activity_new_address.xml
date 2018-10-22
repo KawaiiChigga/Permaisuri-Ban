@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".modules.main.account.edit.address.EditAddressActivity"
+    tools:context=".modules.main.account.edit.address.NewAddressActivity"
     android:fillViewport="true">
 
     <EditText
-        android:id="@+id/etAddressEdit"
+        android:id="@+id/etAddressNew"
         android:layout_width="302dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,7 +19,7 @@
         android:maxLines="1" />
 
     <EditText
-        android:id="@+id/etPlaceholder1"
+        android:id="@+id/etPlaceholder3"
         android:layout_width="299dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -29,7 +29,7 @@
         android:maxLines="1" />
 
     <EditText
-        android:id="@+id/etPlaceholder2"
+        android:id="@+id/etPlaceholder4"
         android:layout_width="299dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -40,14 +40,14 @@
 
 
     <TextView
-        android:id="@+id/tvAddressEdjt"
+        android:id="@+id/tvAddressNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Address" />
 
     <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/spinnerProvince"
+        android:id="@+id/spinnerProvinceNew"
         android:layout_width="340dp"
         android:layout_height="47dp"
         android:layout_marginTop="140dp"
@@ -55,7 +55,7 @@
         />
 
     <TextView
-        android:id="@+id/tvNewPassEdit"
+        android:id="@+id/tvNewAddressEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
@@ -63,7 +63,7 @@
 
 
     <TextView
-        android:id="@+id/tvConfirmPassEdit"
+        android:id="@+id/tvConfirmAddressEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="240dp"
@@ -71,7 +71,7 @@
         />
 
     <Button
-        android:id="@+id/btnSaveAddressEdit"
+        android:id="@+id/btnSaveAddressNew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -85,7 +85,7 @@
         android:textColor="@color/colorP4" />
 
     <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/spinnerRegency"
+        android:id="@+id/spinnerRegencyNew"
         android:layout_width="340dp"
         android:layout_height="47dp"
         android:layout_marginTop="250dp" />
