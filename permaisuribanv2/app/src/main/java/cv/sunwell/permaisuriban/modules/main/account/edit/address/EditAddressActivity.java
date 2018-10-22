@@ -53,8 +53,8 @@ public class EditAddressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView (R.layout.activity_edit_address);
-        setTitle ("Edit Address");
+        setContentView(R.layout.activity_edit_address);
+        setTitle("Edit Address");
         apiInterface = ApiUtils.getAPIService();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EditAddressActivity.this);
         editor = sharedPreferences.edit();
@@ -91,7 +91,7 @@ public class EditAddressActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 provinceSpinner.setSelection(i);
                 regencies.clear();
-                getRegencyFromProvince(i+1);
+                getRegencyFromProvince(i + 1);
             }
 
             @Override
@@ -115,7 +115,7 @@ public class EditAddressActivity extends AppCompatActivity {
 
     }
 
-    void LoadProvinceData(){
+    void LoadProvinceData() {
         final ProgressDialog loading = ProgressDialog.show(EditAddressActivity.this, null, "Harap Tunggu...", true, false);
         Call<JsonObject> getCall = apiInterface.getProvince(token, userid);
         getCall.enqueue(new Callback<JsonObject>() {
@@ -123,12 +123,12 @@ public class EditAddressActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("success").getAsBoolean()) {
                     JsonArray message = response.body().get("message").getAsJsonArray();
-                    for(int i=0; i<message.size();i++){
+                    for (int i = 0; i < message.size(); i++) {
                         JsonObject tempObject = message.get(i).getAsJsonObject();
                         provinces.add(StringConverter.removeQuotation(tempObject.get("name").getAsString()));
                     }
                     dataAdapter.notifyDataSetChanged();
-                    provinceSpinner.setSelection(provinceid-1);
+                    provinceSpinner.setSelection(provinceid - 1);
                     loading.dismiss();
 
                 } else {
@@ -155,18 +155,17 @@ public class EditAddressActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("success").getAsBoolean()) {
                     JsonArray message = response.body().get("message").getAsJsonArray();
-                    for(int i=0; i<message.size();i++){
+                    for (int i = 0; i < message.size(); i++) {
                         JsonObject tempObject = message.get(i).getAsJsonObject();
-                        Regency tempRegency = new Regency(tempObject.get("systemid").getAsInt(),StringConverter.removeQuotation(tempObject.get("name").getAsString()));
+                        Regency tempRegency = new Regency(tempObject.get("systemid").getAsInt(), StringConverter.removeQuotation(tempObject.get("name").getAsString()));
                         regencies.add(tempRegency);
                     }
                     regencySpinnerAdapter.notifyDataSetChanged();
-                    for(int j =0; j<regencies.size();j++){
-                        if(regencies.get(j).getRegencyId()==oldregencyid){
+                    for (int j = 0; j < regencies.size(); j++) {
+                        if (regencies.get(j).getRegencyId() == oldregencyid) {
                             regencySpinner.setSelection(regencySpinnerAdapter.getPosition(regencies.get(j)));
                             regencyid = regencySpinnerAdapter.getItem(j).getRegencyId();
-                        }
-                        else{
+                        } else {
                             regencySpinner.setSelection(0);
                             regencyid = regencySpinnerAdapter.getItem(0).getRegencyId();
                         }
@@ -190,33 +189,40 @@ public class EditAddressActivity extends AppCompatActivity {
     }
 
     void confirmUpdate() {
-        final ProgressDialog loading = ProgressDialog.show(EditAddressActivity.this, null, "Harap Tunggu...", true, false);
-        JsonObject joCred = new JsonObject();
         String street = etAddressEdit.getText().toString();
-        joCred.addProperty("street", street);
-        joCred.addProperty("regency_id", regencyid);
-        joCred.addProperty("address_id", addressid);
-        Call<JsonObject> getCall = apiInterface.updateAddress(token, userid, userid, joCred);
-        getCall.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (response.body().get("success").getAsBoolean()) {
-                    Toast.makeText(EditAddressActivity.this, "Update address berhasil", Toast.LENGTH_SHORT).show();
-                    loading.dismiss();
-                    finish();
+        if (!street.equals("")) {
+            etAddressEdit.setError(null);
+            final ProgressDialog loading = ProgressDialog.show(EditAddressActivity.this, null, "Harap Tunggu...", true, false);
+            JsonObject joCred = new JsonObject();
 
-                } else {
+            joCred.addProperty("street", street);
+            joCred.addProperty("regency_id", regencyid);
+            joCred.addProperty("address_id", addressid);
+            Call<JsonObject> getCall = apiInterface.updateAddress(token, userid, userid, joCred);
+            getCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if (response.body().get("success").getAsBoolean()) {
+                        Toast.makeText(EditAddressActivity.this, "Update address berhasil", Toast.LENGTH_SHORT).show();
+                        loading.dismiss();
+                        finish();
+
+                    } else {
+                        loading.dismiss();
+                        Toast.makeText(EditAddressActivity.this, "Failed to get data from server", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
                     loading.dismiss();
                     Toast.makeText(EditAddressActivity.this, "Failed to get data from server", Toast.LENGTH_SHORT).show();
                 }
-            }
+            });
+        } else {
+            etAddressEdit.setError("Alamat tidak boleh kosong!");
+        }
 
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                loading.dismiss();
-                Toast.makeText(EditAddressActivity.this, "Failed to get data from server", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 }

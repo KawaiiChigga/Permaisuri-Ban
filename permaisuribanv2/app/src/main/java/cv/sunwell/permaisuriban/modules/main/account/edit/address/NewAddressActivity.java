@@ -34,7 +34,7 @@ public class NewAddressActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String token;
-    int  userid, regencyid;
+    int userid, regencyid;
     EditText etAddressEdit;
     Spinner provinceSpinner, regencySpinner;
     ArrayAdapter<String> dataAdapter;
@@ -46,8 +46,8 @@ public class NewAddressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView (R.layout.activity_new_address);
-        setTitle ("New Address");
+        setContentView(R.layout.activity_new_address);
+        setTitle("New Address");
         apiInterface = ApiUtils.getAPIService();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(NewAddressActivity.this);
         editor = sharedPreferences.edit();
@@ -79,7 +79,7 @@ public class NewAddressActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 provinceSpinner.setSelection(i);
                 regencies.clear();
-                getRegencyFromProvince(i+1);
+                getRegencyFromProvince(i + 1);
             }
 
             @Override
@@ -103,7 +103,7 @@ public class NewAddressActivity extends AppCompatActivity {
 
     }
 
-    void LoadProvinceData(){
+    void LoadProvinceData() {
         final ProgressDialog loading = ProgressDialog.show(NewAddressActivity.this, null, "Harap Tunggu...", true, false);
         Call<JsonObject> getCall = apiInterface.getProvince(token, userid);
         getCall.enqueue(new Callback<JsonObject>() {
@@ -111,7 +111,7 @@ public class NewAddressActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("success").getAsBoolean()) {
                     JsonArray message = response.body().get("message").getAsJsonArray();
-                    for(int i=0; i<message.size();i++){
+                    for (int i = 0; i < message.size(); i++) {
                         JsonObject tempObject = message.get(i).getAsJsonObject();
                         provinces.add(StringConverter.removeQuotation(tempObject.get("name").getAsString()));
                     }
@@ -143,9 +143,9 @@ public class NewAddressActivity extends AppCompatActivity {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("success").getAsBoolean()) {
                     JsonArray message = response.body().get("message").getAsJsonArray();
-                    for(int i=0; i<message.size();i++){
+                    for (int i = 0; i < message.size(); i++) {
                         JsonObject tempObject = message.get(i).getAsJsonObject();
-                        Regency tempRegency = new Regency(tempObject.get("systemid").getAsInt(),StringConverter.removeQuotation(tempObject.get("name").getAsString()));
+                        Regency tempRegency = new Regency(tempObject.get("systemid").getAsInt(), StringConverter.removeQuotation(tempObject.get("name").getAsString()));
                         regencies.add(tempRegency);
                     }
                     regencySpinnerAdapter.notifyDataSetChanged();
@@ -169,32 +169,38 @@ public class NewAddressActivity extends AppCompatActivity {
     }
 
     void confirmAdd() {
-        final ProgressDialog loading = ProgressDialog.show(NewAddressActivity.this, null, "Harap Tunggu...", true, false);
-        JsonObject joCred = new JsonObject();
         String street = etAddressEdit.getText().toString();
-        joCred.addProperty("street", street);
-        joCred.addProperty("regency_id", regencyid);
-        Call<JsonObject> getCall = apiInterface.saveAddress(token, userid, userid, joCred);
-        getCall.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (response.body().get("success").getAsBoolean()) {
-                    Toast.makeText(NewAddressActivity.this, "Menambah address berhasil", Toast.LENGTH_SHORT).show();
-                    loading.dismiss();
-                    finish();
+        if (!street.equals("")) {
+            etAddressEdit.setError(null);
+            final ProgressDialog loading = ProgressDialog.show(NewAddressActivity.this, null, "Harap Tunggu...", true, false);
+            JsonObject joCred = new JsonObject();
+            joCred.addProperty("street", street);
+            joCred.addProperty("regency_id", regencyid);
+            Call<JsonObject> getCall = apiInterface.saveAddress(token, userid, userid, joCred);
+            getCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if (response.body().get("success").getAsBoolean()) {
+                        Toast.makeText(NewAddressActivity.this, "Menambah address berhasil", Toast.LENGTH_SHORT).show();
+                        loading.dismiss();
+                        finish();
 
-                } else {
+                    } else {
+                        loading.dismiss();
+                        Toast.makeText(NewAddressActivity.this, "Failed to get data from server", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
                     loading.dismiss();
                     Toast.makeText(NewAddressActivity.this, "Failed to get data from server", Toast.LENGTH_SHORT).show();
                 }
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                loading.dismiss();
-                Toast.makeText(NewAddressActivity.this, "Failed to get data from server", Toast.LENGTH_SHORT).show();
-            }
-        });
+            });
+        } else {
+            etAddressEdit.setError("Alamat tidak boleh kosong!");
+        }
     }
+
 
 }
