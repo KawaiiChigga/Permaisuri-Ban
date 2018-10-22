@@ -134,6 +134,32 @@ public class ManageAddressActivity extends AppCompatActivity {
         });
     }
 
+    void deleteAddress(int systemid){
+        final ProgressDialog loading = ProgressDialog.show(ManageAddressActivity.this, null, "Harap Tunggu...", true, false);
+        Call<JsonObject> getCall = apiInterface.deleteAddress(token, userid, userid, systemid);
+        getCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.body().get("success").getAsBoolean()) {
+                    Toast.makeText(ManageAddressActivity.this, "Alamat berhasil dihapus!", Toast.LENGTH_SHORT).show();
+                    listAddress.clear();
+                    getUserAddress(token,userid);
+                    manageAddressAdapter.notifyDataSetChanged();
+                    loading.dismiss();
+                } else {
+                    loading.dismiss();
+                    Toast.makeText(ManageAddressActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(ManageAddressActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+    }
 
 }

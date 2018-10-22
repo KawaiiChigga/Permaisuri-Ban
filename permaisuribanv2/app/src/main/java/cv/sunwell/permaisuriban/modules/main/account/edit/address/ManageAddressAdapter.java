@@ -46,34 +46,21 @@ public class ManageAddressAdapter extends RecyclerView.Adapter<ManageAddressAdap
             @Override
             public void onClick (View v)
             {
-                /*AlertDialog.Builder b = new AlertDialog.Builder(context);
-                b.setTitle("Example");
-                String[] types = {"By Zip", "By Category", "By Category", "By Category", "By Category", "By Category", "By Category", "By Category", "By Category", "By Category",  "By Category", "By Category", "By Category", "By Category", "By Category", "By Category", "By Category"};
-                b.setItems(types, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-                        switch(which){
-                            case 0:
-
-                                break;
-                            case 1:
-
-                                break;
-                        }
-                    }
-
-                });
-
-                b.show();*/
                 Intent intent = new Intent (context, EditAddressActivity.class);
                 intent.putExtra("systemid", alAddressItem.get(position).getSystemId());
                 intent.putExtra("address", alAddressItem.get(position).getJalan());
                 intent.putExtra("regencyid", alAddressItem.get(position).getRegencyId());
                 intent.putExtra("provinceid", alAddressItem.get(position).getProvinsiId());
                 context.startActivity(intent);
+            }
+        });
+
+        holder.btnDeleteItemAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(context instanceof ManageAddressActivity){
+                    ((ManageAddressActivity)context).deleteAddress(alAddressItem.get(position).getSystemId());;
+                }
             }
         });
 
@@ -90,6 +77,7 @@ public class ManageAddressAdapter extends RecyclerView.Adapter<ManageAddressAdap
         TextView tvAddressName;
         TextView tvAddressAddress;
         Button btnEditItemAddress;
+        Button btnDeleteItemAddress;
 
         public MyViewHolder (View itemView)
         {
@@ -97,7 +85,7 @@ public class ManageAddressAdapter extends RecyclerView.Adapter<ManageAddressAdap
             tvAddressName = (TextView) itemView.findViewById (R.id.tvAddressName);
             tvAddressAddress = (TextView) itemView.findViewById (R.id.tvAddressAddress);
             btnEditItemAddress = (Button) itemView.findViewById (R.id.btnEditItemAddress);
-
+            btnDeleteItemAddress = (Button) itemView.findViewById (R.id.btnDeleteItemAddress);
         }
     }
 }

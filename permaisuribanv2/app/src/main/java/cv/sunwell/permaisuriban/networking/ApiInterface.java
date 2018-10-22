@@ -26,7 +26,7 @@ public interface ApiInterface
     Call<JsonObject> saveAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid, @Body JsonObject js);
 
     @DELETE("deleteAddress/{pathid}")
-    Call<ResponseBody> deleteAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Query("address_id") int addressid, @Path("pathid") int pathid);
+    Call<JsonObject> deleteAddress(@Header("remember_token") String remember_token, @Header("userid") int userid,  @Path("pathid") int pathid, @Query("address_id") int addressid);
 
     @PUT("updateAddress/{pathid}")
     Call<JsonObject> updateAddress(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid, @Body JsonObject js);
