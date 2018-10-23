@@ -72,8 +72,6 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                  if (response.body().get("success").getAsBoolean()) {
-                     Toast.makeText(LoginActivity.this, "Yay! Id : " + response.body().get("userid"), Toast.LENGTH_SHORT).show();
-                     //Toast.makeText(mContext, response.body().get("message").toString(), Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                      intent.putExtra("frgToLoad", 0);
                      saveCredentials(StringConverter.removeQuotation(response.body().get("remember_token").toString()), response.body().get("userid").getAsInt());

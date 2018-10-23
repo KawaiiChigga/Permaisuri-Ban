@@ -23,7 +23,7 @@ public class TransStatusFragment extends android.support.v4.app.Fragment
     @Override
     public View onCreateView (@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        view = inflater.inflate (R.layout.fragment_trans_detail,container,false);
+        view = inflater.inflate (R.layout.fragment_trans_status,container,false);
         return view;
     }
 }

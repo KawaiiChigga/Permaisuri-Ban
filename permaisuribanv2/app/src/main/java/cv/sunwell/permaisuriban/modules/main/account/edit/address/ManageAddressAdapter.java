@@ -59,7 +59,7 @@ public class ManageAddressAdapter extends RecyclerView.Adapter<ManageAddressAdap
             @Override
             public void onClick(View view) {
                 if(context instanceof ManageAddressActivity){
-                    ((ManageAddressActivity)context).deleteAddress(alAddressItem.get(position).getSystemId());;
+                    ((ManageAddressActivity)context).dialogDelete(alAddressItem.get(position).getSystemId());;
                 }
             }
         });

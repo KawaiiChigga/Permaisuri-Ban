@@ -98,7 +98,7 @@ public class AccountFragment extends Fragment
     }
 
     public void ocLogout() {
-        ((MainActivity) getActivity ()).onLogout();
+        ((MainActivity) getActivity ()).dialogLogout();
     }
 
     public void ocEditProfile(){

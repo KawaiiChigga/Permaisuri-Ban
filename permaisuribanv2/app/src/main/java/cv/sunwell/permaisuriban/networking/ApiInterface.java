@@ -51,4 +51,10 @@ public interface ApiInterface
 
     @PUT("customer/{pathid}")
     Call<JsonObject> editUser(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid, @Body JsonObject js);
+
+    @GET("category")
+    Call<JsonObject> getCategory(@Header("remember_token") String remember_token, @Header("userid") int userid);
+
+    @GET("item")
+    Call<JsonObject> getItem(@Header("remember_token") String remember_token, @Header("userid") int userid);
 }
