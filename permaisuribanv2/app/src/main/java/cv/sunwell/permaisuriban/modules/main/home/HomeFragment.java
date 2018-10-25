@@ -42,13 +42,13 @@ public class HomeFragment extends Fragment
 
     public void insertItem ()
     {
-        Item temp = new Item(4, "Passenger & SUV",R.drawable.cat_passenger_suv,"The Bridgestone Group is eternally committed to serving society with superior quality. ");
+        Item temp = new Item(4, "Standard",R.drawable.cat_passenger_suv,"The Bridgestone Group is eternally committed to serving society with superior quality. ");
         brandItem.add (temp);
-        temp = new Item(5, "Light Truck",R.drawable.cat_light_truck,"For over 120 years, Dunlop has led the way in superior driving performance and excellence in racing. ");
+        temp = new Item(5, "Race",R.drawable.cat_light_truck,"For over 120 years, Dunlop has led the way in superior driving performance and excellence in racing. ");
         brandItem.add (temp);
-        temp = new Item(6, "Truck & Buses",R.drawable.cat_truck_buses,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
+        temp = new Item(6, "Sport",R.drawable.cat_truck_buses,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
         brandItem.add (temp);
-        temp = new Item(7, "Others",R.drawable.cat_others,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
+        temp = new Item(7, "Dirt",R.drawable.cat_others,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
         brandItem.add (temp);
     }
 

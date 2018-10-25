@@ -91,6 +91,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         brandList.add (new Item (1, "GT", R.drawable.gtlogo, "abc"));
         brandList.add (new Item (2, "Bridgestone", R.drawable.bridgestonelogo, "abc"));
         brandList.add (new Item (3, "Dunlop", R.drawable.dunloplogo, "abc"));
+        brandList.add (new Item (4, "Pirelli", R.drawable.pirellilogo, "abc"));
         return brandList;
     }
 
