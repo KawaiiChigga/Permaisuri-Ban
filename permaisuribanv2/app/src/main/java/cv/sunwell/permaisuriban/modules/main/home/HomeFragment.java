@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import cv.sunwell.permaisuriban.R;
-import cv.sunwell.permaisuriban.model.Item;
+import cv.sunwell.permaisuriban.model.Kategori;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
 
 public class HomeFragment extends Fragment
@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private HomeAdapter homeAdapter;
-    private ArrayList<Item>  brandItem = new ArrayList<> ();
+    private ArrayList<Kategori> merks = new ArrayList<> ();
 
     @Nullable
     @Override
@@ -30,9 +30,9 @@ public class HomeFragment extends Fragment
     {
         view = inflater.inflate (R.layout.fragment_home, container, false);
         recyclerView = view.findViewById (R.id.rvHome);
-        insertItem ();
+        insertKategori ();
         layoutManager = new LinearLayoutManager (getActivity ());
-        homeAdapter = new HomeAdapter (brandItem, getContext ());
+        homeAdapter = new HomeAdapter (merks, getContext ());
         recyclerView.setAdapter (homeAdapter);
         recyclerView.setLayoutManager (layoutManager);
 
@@ -40,16 +40,16 @@ public class HomeFragment extends Fragment
     }
 
 
-    public void insertItem ()
+    public void insertKategori ()
     {
-        Item temp = new Item(4, "Standard",R.drawable.cat_passenger_suv,"The Bridgestone Group is eternally committed to serving society with superior quality. ");
-        brandItem.add (temp);
-        temp = new Item(5, "Race",R.drawable.cat_light_truck,"For over 120 years, Dunlop has led the way in superior driving performance and excellence in racing. ");
-        brandItem.add (temp);
-        temp = new Item(6, "Sport",R.drawable.cat_truck_buses,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
-        brandItem.add (temp);
-        temp = new Item(7, "Dirt",R.drawable.cat_others,"GT Radial has an environmental and humanitarian drive that ties into all actions. ");
-        brandItem.add (temp);
+        Kategori temp = new Kategori(1, "Standard",R.drawable.cat_passenger_suv);
+        merks.add (temp);
+        temp = new Kategori(2, "Race",R.drawable.cat_light_truck);
+        merks.add (temp);
+        temp = new Kategori(3, "Sport",R.drawable.cat_truck_buses);
+        merks.add (temp);
+        temp = new Kategori(4, "Dirt",R.drawable.cat_others);
+        merks.add (temp);
     }
 
 

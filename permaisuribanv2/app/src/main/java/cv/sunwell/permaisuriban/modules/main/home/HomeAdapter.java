@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +12,15 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 import cv.sunwell.permaisuriban.R;
-import cv.sunwell.permaisuriban.model.Item;
+import cv.sunwell.permaisuriban.model.Kategori;
 import cv.sunwell.permaisuriban.modules.main.home.category.HomeCategoryActivity;
-import cv.sunwell.permaisuriban.modules.main.home.category.detail.ItemDetailActivity;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>
 {
-    ArrayList<Item> brandItem = new ArrayList<> ();
+    ArrayList<Kategori> brandItem = new ArrayList<> ();
     Context context;
 
-    public HomeAdapter (ArrayList<Item> _brandItem, Context _context)
+    public HomeAdapter (ArrayList<Kategori> _brandItem, Context _context)
     {
 
         this.brandItem = _brandItem;
@@ -49,10 +47,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>
             {
 
                 Intent intent = new Intent(context, HomeCategoryActivity.class);
-                intent.putExtra ("brand",brandItem.get (position).getBrand ());
-                intent.putExtra ("imgURL",brandItem.get (position).getImgURL ());
-                intent.putExtra ("description",brandItem.get (position).getDescription ());
-                Log.d ("TEST", "Des : "+brandItem.get (position).getDescription ());
+                intent.putExtra ("idkat",brandItem.get (position).getId ());
+                intent.putExtra ("namakat",brandItem.get (position).getNamamerk ());
 
                 context.startActivity(intent);
             }

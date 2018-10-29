@@ -1,7 +1,11 @@
 package cv.sunwell.permaisuriban.modules.main.home.category;
 
 import android.app.ActionBar;
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Debug;
+import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,12 +16,21 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Item;
+import cv.sunwell.permaisuriban.networking.ApiInterface;
+import cv.sunwell.permaisuriban.networking.ApiUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeCategoryActivity extends AppCompatActivity implements SearchView.OnQueryTextListener
 {
@@ -30,16 +43,12 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
     Toolbar toolbar;
     RecyclerView recyclerView;
     RecyclerView recyclerView2;
-    String brand, description;
-    int imgURL;
+    ApiInterface apiInterface;
     private RecyclerView.LayoutManager layoutManager;
-
-    public void setActionBarTitle(String _title) {
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.toolbar_layout);
-        Toolbar toolbar = findViewById (R.id.toolbar);
-        toolbar.setTitle (_title);
-    }
+    SharedPreferences sharedPreferences;
+    String token;
+    int userid;
+    String kategori;
 
     @Override
     protected void onCreate (Bundle savedInstanceState)
@@ -49,48 +58,37 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         toolbar = findViewById (R.id.toolbar);
         setSupportActionBar (toolbar);
         getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
-
+        apiInterface = ApiUtils.getAPIService();
         recyclerView2 = findViewById (R.id.rvBrands);
         homeBrandAdapter = new HomeBrandAdapter(getBrandList(), this);
         recyclerView2.setAdapter (homeBrandAdapter);
         recyclerView2.setLayoutManager (new LinearLayoutManager  (this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView2.setHasFixedSize (true);
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(HomeCategoryActivity.this);
+        userid = sharedPreferences.getInt("userid", 0);
+        token = sharedPreferences.getString("token", "");
         recyclerView = findViewById (R.id.rvHome);
         layoutManager = new GridLayoutManager(this, 3);
-        homeCategoryAdapter = new HomeCategoryAdapter(getItemArrayList(), this);
+        homeCategoryAdapter = new HomeCategoryAdapter(itemArrayList, this);
         recyclerView.setAdapter (homeCategoryAdapter);
         recyclerView.setLayoutManager (layoutManager);
         recyclerView.setHasFixedSize (true);
-
-
-        brand = getIntent ().getStringExtra ("brand");
-        imgURL = getIntent ().getIntExtra ("imgURL", 0);
-        description = getIntent ().getStringExtra ("description");
+        kategori = HomeCategoryActivity.this.getIntent().getStringExtra("namakat");
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.toolbar_layout);
         Toolbar toolbar = findViewById (R.id.toolbar);
-        toolbar.setTitle (brand);
+        toolbar.setTitle (kategori);
 
-        filterList.addAll(itemArrayList);
+        getItems(token, userid);
     }
 
-    ArrayList<Item> getItemArrayList ()
-    {
-        itemArrayList.add (new Item (33, "GT RADIAL", "GT Champiro GTX Pro 185", 960000, R.drawable.tire_1, 500, "Passenger"));
-        itemArrayList.add (new Item (34, "GT RADIAL", "GT Chomporo GTX Pro 186", 860000, R.drawable.tire_1, 250, "Passenger"));
-        itemArrayList.add (new Item (35, "DUNLOP", "CS5 Ultra Touring", 125000, R.drawable.tire_2, 300, "High Perfomance"));
-        itemArrayList.add (new Item (36, "BRIDGESTONE", "DURAVIS 1", 1125000, R.drawable.tire_3, 400, "Bias"));
-        Collections.sort(itemArrayList);
-        return itemArrayList;
-    }
 
     ArrayList<Item> getBrandList ()
     {
-        brandList.add (new Item (1, "GT", R.drawable.gtlogo, "abc"));
+        brandList.add (new Item (1, "GT Radial", R.drawable.gtlogo, "abc"));
         brandList.add (new Item (2, "Bridgestone", R.drawable.bridgestonelogo, "abc"));
-        brandList.add (new Item (3, "Dunlop", R.drawable.dunloplogo, "abc"));
+        brandList.add (new Item (3, "Michelin", R.drawable.michelinlogo, "abc"));
         brandList.add (new Item (4, "Pirelli", R.drawable.pirellilogo, "abc"));
         return brandList;
     }
@@ -161,5 +159,45 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         Collections.sort(filterList);
         homeCategoryAdapter.setFilter (filterList);
         return true;
+    }
+
+    private void getItems(String token, int userid) {
+        final ProgressDialog loading = ProgressDialog.show(HomeCategoryActivity.this, null, "Memuat barang..", true, false);
+        Call<JsonObject> getCall = apiInterface.getItem(token, userid);
+        getCall.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.body().get("success").getAsBoolean()) {
+                    JsonArray message = response.body().get("message").getAsJsonArray();
+                    Item tempItems;
+                    for(int i=0; i<message.size();i++){
+                        JsonObject tempObject = message.get(i).getAsJsonObject();
+                        JsonArray categories = tempObject.get("categories").getAsJsonArray();
+                        JsonObject category = categories.get(0).getAsJsonObject();
+                        JsonObject merk = tempObject.get("merk").getAsJsonObject();
+                        tempItems = new Item(tempObject.get("systemid").getAsInt(), merk.get("name").getAsString(), tempObject.get("name").getAsString(), Integer.parseInt(tempObject.get("sellprice").getAsString()), R.drawable.tire_1, category.get("name").getAsString());
+                        if(kategori.equalsIgnoreCase(category.get("name").getAsString())){
+                            itemArrayList.add(tempItems);
+                        }
+                    }
+                    Collections.sort(itemArrayList);
+                    filterList.addAll(itemArrayList);
+                    homeCategoryAdapter.notifyDataSetChanged();
+                    loading.dismiss();
+
+                } else {
+                    loading.dismiss();
+                    Toast.makeText(HomeCategoryActivity.this, "Failed to get item data", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(HomeCategoryActivity.this, "Failed to get item data", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 }

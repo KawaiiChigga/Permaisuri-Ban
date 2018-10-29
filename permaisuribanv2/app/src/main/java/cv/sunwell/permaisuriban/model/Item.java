@@ -22,6 +22,15 @@ public class Item implements Comparable<Item>
         description = _description;
     }
 
+    public Item (int _id, String _brand, String _name, int _price, int _imgURL, String _category)
+    {
+        id = _id;
+        brand = _brand;
+        name = _name;
+        price = _price;
+        imgURL = _imgURL;
+        category = _category;
+    }
 
     public Item (int _id, String _brand, String _name, int _price, int _imgURL, int _count, String _category)
     {
