@@ -175,7 +175,8 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
                         JsonArray categories = tempObject.get("categories").getAsJsonArray();
                         JsonObject category = categories.get(0).getAsJsonObject();
                         JsonObject merk = tempObject.get("merk").getAsJsonObject();
-                        tempItems = new Item(tempObject.get("systemid").getAsInt(), merk.get("name").getAsString(), tempObject.get("name").getAsString(), Integer.parseInt(tempObject.get("sellprice").getAsString()), R.drawable.tire_1, category.get("name").getAsString());
+                        JsonObject stock = tempObject.get("onhandstock").getAsJsonObject();
+                        tempItems = new Item(tempObject.get("systemid").getAsInt(), merk.get("name").getAsString(), tempObject.get("name").getAsString(), Integer.parseInt(tempObject.get("sellprice").getAsString()), R.drawable.tire_1, stock.get("qty").getAsString(), category.get("name").getAsString());
                         if(kategori.equalsIgnoreCase(category.get("name").getAsString())){
                             itemArrayList.add(tempItems);
                         }

@@ -50,15 +50,15 @@ public class CartFragment extends Fragment
 
     public void insertItem ()
     {
-        Item temp = new Item (55, "DUNLOP", "CS5 Ultra Touring", 1250000, R.drawable.tire_dummy, 3, "Passenger");
+        Item temp = new Item (55, "DUNLOP", "CS5 Ultra Touring", 1250000, R.drawable.tire_dummy, "3", "Passenger");
         listItem.add (temp);
-        temp = new Item (56, "DUNLOP", "GT Champiro GTX Pro 185/65R15", 960000, R.drawable.tire_dummy2, 4, "Passenger");
+        temp = new Item (56, "DUNLOP", "GT Champiro GTX Pro 185/65R15", 960000, R.drawable.tire_dummy2, "4", "Passenger");
         listItem.add (temp);
-        temp = new Item (57, "DUNLOP", "Full OFFROAD", 850000, R.drawable.tire_dummy3, 3, "Passenger");
+        temp = new Item (57, "DUNLOP", "Full OFFROAD", 850000, R.drawable.tire_dummy3, "5", "Passenger");
         listItem.add (temp);
-        temp = new Item (58, "DUNLOP", "Ban Super Baik", 1900000, R.drawable.tire_dummy, 3, "Passenger");
+        temp = new Item (58, "DUNLOP", "Ban Super Baik", 1900000, R.drawable.tire_dummy, "3", "Passenger");
         listItem.add (temp);
-        temp = new Item (59, "DUNLOP", "Ban Super Jahat", 1900000, R.drawable.tire_dummy, 3, "Passenger");
+        temp = new Item (59, "DUNLOP", "Ban Super Jahat", 1900000, R.drawable.tire_dummy, "2", "Passenger");
         listItem.add (temp);
         //maks nama 25 karakter
     }

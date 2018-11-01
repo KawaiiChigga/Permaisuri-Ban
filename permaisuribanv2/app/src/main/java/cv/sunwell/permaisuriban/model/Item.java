@@ -12,7 +12,7 @@ public class Item implements Comparable<Item>
     private String category;
     private String description;
     private int imgURL;
-    private int count;
+    private String count;
 
     public Item (int _id, String _brand, int _imgURL, String _description)
     {
@@ -32,7 +32,7 @@ public class Item implements Comparable<Item>
         category = _category;
     }
 
-    public Item (int _id, String _brand, String _name, int _price, int _imgURL, int _count, String _category)
+    public Item (int _id, String _brand, String _name, int _price, int _imgURL, String _count, String _category)
     {
         id = _id;
         brand = _brand;
@@ -61,12 +61,12 @@ public class Item implements Comparable<Item>
         description = _description;
     }
 
-    public int getCount ()
+    public String getCount ()
     {
         return count;
     }
 
-    public void setCount (int _count)
+    public void setCount (String _count)
     {
         count = _count;
     }

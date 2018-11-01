@@ -47,7 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder>
         holder.itemPosition = position;
         int price, count, subtotal;
         price = alCartItem.get (position).getPrice ();
-        count = alCartItem.get (position).getCount ();
+        count = Integer.parseInt(alCartItem.get (position).getCount ());
         subtotal = price * count;
         Log.d ("LOG", "Price : " + price);
         Log.d ("LOG", "Count : " + count);

@@ -27,7 +27,7 @@ public class ItemDetailActivity extends AppCompatActivity
     String brand;
     String category;
     String description;
-    int count;
+    String count;
 
     TextView tvDetailName;
     TextView tvDetailPrice;
@@ -50,7 +50,7 @@ public class ItemDetailActivity extends AppCompatActivity
         brand = getIntent().getStringExtra("brand");
         category = getIntent().getStringExtra("category");
         description = getIntent().getStringExtra("description");
-        count = getIntent().getIntExtra("count", 0);
+        count = getIntent().getStringExtra("count");
         setTitle (name);
 
         tvDetailName = findViewById (R.id.tvItemDetailName);

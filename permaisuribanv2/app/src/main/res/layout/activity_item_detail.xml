@@ -48,8 +48,8 @@
                     android:id="@+id/tvItemDetailPrice"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
                     android:padding="5dp"
                     android:text="Rp 1.492.000" />
 
@@ -69,28 +69,20 @@
                         android:id="@+id/tvItemDetailStock"
                         android:layout_width="60dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="20dp"
                         android:padding="5dp"
                         android:text="STOCK"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvItemDetailSold"
-                        android:layout_width="50dp"
+                        android:id="@+id/tvItemDetailStockCount"
+                        android:layout_width="40dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="SOLD"
-                        android:textStyle="bold" />
+                        android:text="200" />
 
-                    <TextView
-                        android:id="@+id/tvItemDetailSeen"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="50dp"
-                        android:padding="5dp"
-                        android:text="SEEN"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -99,29 +91,6 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvItemDetailStockCount"
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="40dp"
-                        android:padding="5dp"
-                        android:text="200" />
-
-                    <TextView
-                        android:id="@+id/tvItemDetailSoldCount"
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="65dp"
-                        android:padding="5dp"
-                        android:text="100" />
-
-                    <TextView
-                        android:id="@+id/tvItemDetailSeenCount"
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="65dp"
-                        android:padding="5dp"
-                        android:text="50" />
                 </LinearLayout>
 
                 <View
@@ -134,8 +103,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
                     android:padding="5dp"
                     android:text="Specification"
                     android:textStyle="bold" />
@@ -158,15 +127,6 @@
                     android:padding="5dp"
                     android:text="Category  :     Passenger Car" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:padding="5dp"
-                    android:text="Weight      :     5000gr" />
-
                 <View
                     android:id="@+id/divider5"
                     android:layout_width="match_parent"
@@ -177,8 +137,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
                     android:padding="5dp"
                     android:text="Description"
                     android:textStyle="bold" />
@@ -193,30 +153,29 @@
                     android:text="Ban Forceum Octa pun diklaim memiliki tampilan lebih anggun dan memiliki performance yang prima. Dengan desain telapak asymetris dengan arah sipes yang dinamis pada tiga alur utama rib membuat ban Forceum Octa tetap nyaman meski dalam kecepatan tinggi." />
 
                 <Button
+                    android:id="@+id/btnItemDetailFav"
                     android:layout_width="370dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/colorP1"
                     android:text="ADD TO FAVORITES"
-                    android:textColor="#FFFFFF"
-                    android:id="@+id/btnItemDetailFav"/>
+                    android:textColor="#FFFFFF" />
 
                 <Button
+                    android:id="@+id/btnItemDetailBuy"
                     android:layout_width="370dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp"
                     android:backgroundTint="@color/colorP2"
                     android:text="BUY"
-                    android:textColor="#FFFFFF"
-                    android:id="@+id/btnItemDetailBuy"/>
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
 
         </ScrollView>
-
 
 
     </LinearLayout>
