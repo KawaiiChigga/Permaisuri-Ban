@@ -95,6 +95,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         //Toast.makeText(context, "You clicked " + clickedDataItem.getCount(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, ItemDetailActivity.class);
 
+        intent.putExtra ("id",clickedDataItem.getId());
         intent.putExtra ("brand",clickedDataItem.getBrand());
         intent.putExtra ("imgURL",clickedDataItem.getImgURL());
         intent.putExtra ("description",clickedDataItem.getDescription());

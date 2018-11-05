@@ -1,8 +1,11 @@
 package cv.sunwell.permaisuriban.modules.main.home.category.detail;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,11 +16,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
 import cv.sunwell.permaisuriban.R;
+import cv.sunwell.permaisuriban.model.Item;
+import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
+import cv.sunwell.permaisuriban.modules.auth.register.RegisterActivity;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
+import cv.sunwell.permaisuriban.modules.main.StringConverter;
 import cv.sunwell.permaisuriban.modules.main.cart.CartFragment;
 import cv.sunwell.permaisuriban.modules.main.dialog.BuyItemDialogFragment;
 import cv.sunwell.permaisuriban.modules.main.dialog.CartDeleteDialogFragment;
+import cv.sunwell.permaisuriban.modules.main.home.category.HomeCategoryActivity;
+import cv.sunwell.permaisuriban.networking.ApiInterface;
+import cv.sunwell.permaisuriban.networking.ApiUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ItemDetailActivity extends AppCompatActivity
 {
@@ -28,7 +43,10 @@ public class ItemDetailActivity extends AppCompatActivity
     String category;
     String description;
     String count;
-
+    int id;
+    int userid;
+    String token;
+    ApiInterface apiInterface;
     TextView tvDetailName;
     TextView tvDetailPrice;
     ImageView ivItemDetail;
@@ -38,6 +56,9 @@ public class ItemDetailActivity extends AppCompatActivity
     TextView tvDetailCount;
     Button btnItemDetailBuy;
     Button btnItemDetailFav;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    ProgressDialog loading;
 
     @Override
     protected void onCreate (@Nullable Bundle savedInstanceState)
@@ -51,7 +72,13 @@ public class ItemDetailActivity extends AppCompatActivity
         category = getIntent().getStringExtra("category");
         description = getIntent().getStringExtra("description");
         count = getIntent().getStringExtra("count");
+        id = getIntent().getIntExtra("id", 0);
         setTitle (name);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(ItemDetailActivity.this);
+        userid = sharedPreferences.getInt("userid", 0);
+        token = sharedPreferences.getString("token", "");
+        editor = sharedPreferences.edit();
+        apiInterface = ApiUtils.getAPIService();
 
         tvDetailName = findViewById (R.id.tvItemDetailName);
         tvDetailPrice = findViewById (R.id.tvItemDetailPrice);
@@ -84,20 +111,75 @@ public class ItemDetailActivity extends AppCompatActivity
         });
     }
 
-    public void addSomething(){
-        Toast.makeText(ItemDetailActivity.this, "Tambah", Toast.LENGTH_SHORT).show();
+    public void addSomething(int count){
+        loading = ProgressDialog.show(ItemDetailActivity.this, null, "Harap Tunggu...", true, false);
+
+        JsonObject joCred = new JsonObject();
+        joCred.addProperty("qty", count);
+        joCred.addProperty("reqnote", "");
+        joCred.addProperty("cust", userid);
+        joCred.addProperty("product", id);
+
+        Call<JsonObject> call = apiInterface.addCartItem(token, userid, joCred);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.body().get("success").getAsBoolean()) {
+                    Toast.makeText(ItemDetailActivity.this, "Barang berhasil ditambahkan ke keranjang!" , Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, response.body().get("message").toString(), Toast.LENGTH_SHORT).show();
+                    loading.dismiss();
+                }
+                else {
+                    loading.dismiss();
+                    Toast.makeText(ItemDetailActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(ItemDetailActivity.this, "Error : " + t.toString(), Toast.LENGTH_SHORT).show();
+                loading.dismiss();
+            }
+        });
     }
 
     public void addToFavorite(){
         Toast.makeText(ItemDetailActivity.this, "Ditambah ke favorit!", Toast.LENGTH_SHORT).show();
     }
 
-    public void addSomethingGo(){
-        Toast.makeText(ItemDetailActivity.this, "Tambah dan pergi", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("frgToLoad", 1);
-        startActivity(i);
-        finish();
+    public void addSomethingGo(int count){
+        loading = ProgressDialog.show(ItemDetailActivity.this, null, "Harap Tunggu...", true, false);
+
+        JsonObject joCred = new JsonObject();
+        joCred.addProperty("qty", count);
+        joCred.addProperty("reqnote", "");
+        joCred.addProperty("cust", userid);
+        joCred.addProperty("product", id);
+
+        Call<JsonObject> call = apiInterface.addCartItem(token, userid, joCred);
+        call.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (StringConverter.removeQuotation(response.body().get("success").getAsString()).equalsIgnoreCase("Cart Detail successfully created!")) {
+                    Toast.makeText(ItemDetailActivity.this, "Barang berhasil ditambahkan ke keranjang!" , Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, response.body().get("message").toString(), Toast.LENGTH_SHORT).show();
+                    loading.dismiss();
+                    Intent i = new Intent(ItemDetailActivity.this, MainActivity.class);
+                    i.putExtra("frgToLoad", 1);
+                    startActivity(i);
+                    finish();
+                }
+                else {
+                    loading.dismiss();
+                    Toast.makeText(ItemDetailActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(ItemDetailActivity.this, "Error : " + t.toString(), Toast.LENGTH_SHORT).show();
+                loading.dismiss();
+            }
+        });
+
     }
 
     public void showAddDialog(){
@@ -106,7 +188,9 @@ public class ItemDetailActivity extends AppCompatActivity
         Bundle args = new Bundle();
         args.putString("name", name);
         args.putInt("imgUrl", imgURL);
+        args.putInt("price", price);
         buyDialog.setArguments(args);
         buyDialog.show(fm, "dialog");
     }
+
 }

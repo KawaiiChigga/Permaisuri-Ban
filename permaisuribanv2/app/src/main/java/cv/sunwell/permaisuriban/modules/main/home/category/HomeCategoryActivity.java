@@ -2,6 +2,7 @@ package cv.sunwell.permaisuriban.modules.main.home.category;
 
 import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Debug;
@@ -26,6 +27,7 @@ import java.util.Collections;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Item;
+import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
 import cv.sunwell.permaisuriban.networking.ApiInterface;
 import cv.sunwell.permaisuriban.networking.ApiUtils;
 import retrofit2.Call;
@@ -46,6 +48,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
     ApiInterface apiInterface;
     private RecyclerView.LayoutManager layoutManager;
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     String token;
     int userid;
     String kategori;
@@ -67,6 +70,7 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(HomeCategoryActivity.this);
         userid = sharedPreferences.getInt("userid", 0);
         token = sharedPreferences.getString("token", "");
+        editor = sharedPreferences.edit();
         recyclerView = findViewById (R.id.rvHome);
         layoutManager = new GridLayoutManager(this, 3);
         homeCategoryAdapter = new HomeCategoryAdapter(itemArrayList, this);
@@ -188,7 +192,12 @@ public class HomeCategoryActivity extends AppCompatActivity implements SearchVie
 
                 } else {
                     loading.dismiss();
-                    Toast.makeText(HomeCategoryActivity.this, "Failed to get item data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeCategoryActivity.this, "Token expired, please log in again.", Toast.LENGTH_SHORT).show();
+                    editor.remove("token");
+                    editor.apply();
+                    Intent intent = new Intent(HomeCategoryActivity.this, AuthActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     finish();
                 }
             }

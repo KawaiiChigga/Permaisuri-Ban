@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Address;
 
-import cv.sunwell.permaisuriban.modules.main.ExtraUtility;
+import cv.sunwell.permaisuriban.modules.main.StringConverter;
 import cv.sunwell.permaisuriban.networking.ApiInterface;
 import cv.sunwell.permaisuriban.networking.ApiUtils;
 import retrofit2.Call;
@@ -113,7 +113,7 @@ public class ManageAddressActivity extends AppCompatActivity {
                         JsonObject tempObject = message.get(i).getAsJsonObject();
                         JsonObject regency = tempObject.get("regency").getAsJsonObject();
                         JsonObject province = tempObject.get("province").getAsJsonObject();
-                        tempAddress = new Address(tempObject.get("systemid").getAsInt(), regency.get("prov_id").getAsInt(), regency.get("systemid").getAsInt(), ExtraUtility.removeQuotation(tempObject.get("street").getAsString()), ExtraUtility.removeQuotation(regency.get("name").getAsString()), ExtraUtility.removeQuotation(province.get("name").getAsString()));
+                        tempAddress = new Address(tempObject.get("systemid").getAsInt(), regency.get("prov_id").getAsInt(), regency.get("systemid").getAsInt(), StringConverter.removeQuotation(tempObject.get("street").getAsString()), StringConverter.removeQuotation(regency.get("name").getAsString()), StringConverter.removeQuotation(province.get("name").getAsString()));
                         listAddress.add(tempAddress);
                     }
                     manageAddressAdapter.notifyDataSetChanged();

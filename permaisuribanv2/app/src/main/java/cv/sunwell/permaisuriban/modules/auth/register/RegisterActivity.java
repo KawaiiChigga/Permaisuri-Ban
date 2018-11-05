@@ -49,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity
         setContentView (R.layout.activity_register);
 
         apiInterface = ApiUtils.getAPIService();
+
         btnRegister = findViewById(R.id.btnRegister);
         etRegUsername = findViewById(R.id.etRegUsername);
         etRegFirstname = findViewById(R.id.etRegFirstname);
@@ -97,7 +98,6 @@ public class RegisterActivity extends AppCompatActivity
                         Toast.makeText(RegisterActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                     }
                 }
-
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {
                     Toast.makeText(RegisterActivity.this, "Error : " + t.toString(), Toast.LENGTH_SHORT).show();

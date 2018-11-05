@@ -154,9 +154,9 @@
 
                 <Button
                     android:id="@+id/btnItemDetailFav"
-                    android:layout_width="370dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="right"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/colorP1"
                     android:text="ADD TO FAVORITES"
@@ -164,9 +164,9 @@
 
                 <Button
                     android:id="@+id/btnItemDetailBuy"
-                    android:layout_width="370dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="right"
                     android:layout_marginTop="2dp"
                     android:backgroundTint="@color/colorP2"
                     android:text="BUY"

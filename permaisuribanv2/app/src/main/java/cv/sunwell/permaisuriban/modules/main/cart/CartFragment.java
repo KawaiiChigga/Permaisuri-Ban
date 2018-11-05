@@ -2,6 +2,7 @@ package cv.sunwell.permaisuriban.modules.main.cart;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -25,9 +26,11 @@ import java.util.ArrayList;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Item;
+import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
 import cv.sunwell.permaisuriban.modules.main.account.edit.address.ManageAddressActivity;
 import cv.sunwell.permaisuriban.modules.main.dialog.CartDeleteDialogFragment;
+import cv.sunwell.permaisuriban.modules.main.home.category.HomeCategoryActivity;
 import cv.sunwell.permaisuriban.networking.ApiInterface;
 import cv.sunwell.permaisuriban.networking.ApiUtils;
 import retrofit2.Call;
@@ -150,11 +153,13 @@ public class CartFragment extends Fragment
                     Toast.makeText(view.getContext(), "Item telah dihapus dari keranjang", Toast.LENGTH_SHORT).show();
                     cartAdapter.notifyDataSetChanged();
                     loading.dismiss();
-
-
                 } else {
                     loading.dismiss();
-                    Toast.makeText(context, "Gagal menghapus item", Toast.LENGTH_SHORT).show();
+                    editor.remove("token");
+                    editor.apply();
+                    Intent intent = new Intent(context, AuthActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 }
             }
 

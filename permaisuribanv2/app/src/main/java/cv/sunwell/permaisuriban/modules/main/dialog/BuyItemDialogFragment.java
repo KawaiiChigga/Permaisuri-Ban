@@ -23,13 +23,17 @@ public class BuyItemDialogFragment extends DialogFragment {
     String buyItemName;
     int imgUrl;
     int position;
+    int price;
     TextView tvBuyDialogCount;
+    TextView tvBuyDialogPrice;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         buyItemName = getArguments().getString("name");
         imgUrl = getArguments().getInt("imgUrl");
         position = getArguments().getInt("position");
+        price = getArguments().getInt("price");
     }
 
     @Override
@@ -43,6 +47,7 @@ public class BuyItemDialogFragment extends DialogFragment {
         final TextView tvBuyDialog = view.findViewById(R.id.tvBuyDialog);
         tvBuyDialog.setText(buyItemName);
         tvBuyDialogCount = view.findViewById(R.id.tvBuyDialogCount);
+        tvBuyDialogPrice = view.findViewById(R.id.tvBuyDialogPrice);
         ImageView ivBuyDialog = view.findViewById(R.id.ivBuyDialog);
         ivBuyDialog.setImageResource(imgUrl);
 
@@ -61,7 +66,7 @@ public class BuyItemDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 dismiss();
                 if(act != null){
-                    act.addSomething();
+                    act.addSomething(Integer.parseInt(tvBuyDialogCount.getText().toString()));
                 }
             }
         });
@@ -72,7 +77,7 @@ public class BuyItemDialogFragment extends DialogFragment {
             public void onClick(View view) {
                 dismiss();
                 if(act != null){
-                    act.addSomethingGo();
+                    act.addSomethingGo(Integer.parseInt(tvBuyDialogCount.getText().toString()));
                 }
             }
         });

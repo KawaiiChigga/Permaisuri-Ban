@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ import com.google.gson.JsonObject;
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.helper.BottomNavigationHelper;
 import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
+import cv.sunwell.permaisuriban.modules.auth.login.LoginActivity;
 import cv.sunwell.permaisuriban.modules.main.account.AccountFragment;
 import cv.sunwell.permaisuriban.modules.main.cart.CartFragment;
 import cv.sunwell.permaisuriban.modules.main.favourite.FavouriteFragment;
@@ -164,17 +168,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 if (response.body().get("success").getAsBoolean()) {
                     JsonObject message = response.body().get("message").getAsJsonObject();
                     loading.dismiss();
-                    String firstname = ExtraUtility.removeQuotation(message.get("firstname").toString());
-                    String lastname = ExtraUtility.removeQuotation(message.get("lastname").toString());
+                    String firstname = StringConverter.removeQuotation(message.get("firstname").toString());
+                    String lastname = StringConverter.removeQuotation(message.get("lastname").toString());
                     if(lastname.equalsIgnoreCase("null")){
                         lastname = "";
                     }
                     editor.putString("name",firstname + " " + lastname);
                     editor.putString("firstname",firstname);
                     editor.putString("lastname", lastname);
-                    editor.putString("birthdate", ExtraUtility.removeQuotation(message.get("birthdate").toString()));
-                    editor.putString("phone", ExtraUtility.removeQuotation(message.get("phone").toString()));
-                    editor.putString("email", ExtraUtility.removeQuotation(message.get("email").toString()));
+                    editor.putString("birthdate", StringConverter.removeQuotation(message.get("birthdate").toString()));
+                    editor.putString("phone", StringConverter.removeQuotation(message.get("phone").toString()));
+                    editor.putString("email", StringConverter.removeQuotation(message.get("email").toString()));
                     editor.apply();
                 } else {
                     loading.dismiss();
