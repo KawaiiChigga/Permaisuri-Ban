@@ -22,7 +22,7 @@ import java.util.List;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.model.Regency;
-import cv.sunwell.permaisuriban.modules.main.StringConverter;
+import cv.sunwell.permaisuriban.modules.main.ExtraUtility;
 import cv.sunwell.permaisuriban.networking.ApiInterface;
 import cv.sunwell.permaisuriban.networking.ApiUtils;
 import retrofit2.Call;
@@ -113,7 +113,7 @@ public class NewAddressActivity extends AppCompatActivity {
                     JsonArray message = response.body().get("message").getAsJsonArray();
                     for (int i = 0; i < message.size(); i++) {
                         JsonObject tempObject = message.get(i).getAsJsonObject();
-                        provinces.add(StringConverter.removeQuotation(tempObject.get("name").getAsString()));
+                        provinces.add(ExtraUtility.removeQuotation(tempObject.get("name").getAsString()));
                     }
                     dataAdapter.notifyDataSetChanged();
                     provinceSpinner.setSelection(0);
@@ -145,7 +145,7 @@ public class NewAddressActivity extends AppCompatActivity {
                     JsonArray message = response.body().get("message").getAsJsonArray();
                     for (int i = 0; i < message.size(); i++) {
                         JsonObject tempObject = message.get(i).getAsJsonObject();
-                        Regency tempRegency = new Regency(tempObject.get("systemid").getAsInt(), StringConverter.removeQuotation(tempObject.get("name").getAsString()));
+                        Regency tempRegency = new Regency(tempObject.get("systemid").getAsInt(), ExtraUtility.removeQuotation(tempObject.get("name").getAsString()));
                         regencies.add(tempRegency);
                     }
                     regencySpinnerAdapter.notifyDataSetChanged();

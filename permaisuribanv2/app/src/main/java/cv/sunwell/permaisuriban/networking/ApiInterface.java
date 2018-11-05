@@ -57,4 +57,16 @@ public interface ApiInterface
 
     @GET("item")
     Call<JsonObject> getItem(@Header("remember_token") String remember_token, @Header("userid") int userid);
+
+    @GET("item/{pathid}")
+    Call<JsonObject> getItemDetail(@Header("remember_token") String remember_token, @Header("userid") int userid);
+
+    @GET("cart/{pathid}")
+    Call<JsonObject> getCart(@Header("remember_token") String remember_token, @Header("userid") int userid, @Path("pathid") int pathid);
+
+    @POST("cart")
+    Call<JsonObject> addCartItem(@Header("remember_token") String remember_token, @Header("userid") int userid, @Body JsonObject js);
+
+    @DELETE("cart/{pathid}")
+    Call<JsonObject> deleteCartItem(@Header("remember_token") String remember_token, @Header("userid") int userid,  @Path("pathid") int pathid, @Query("product") int product);
 }

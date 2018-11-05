@@ -22,6 +22,16 @@ public class Item implements Comparable<Item>
         description = _description;
     }
 
+    public Item (int _id, String _name, int _price, int _imgURL, String _description, String _count)
+    {
+        id = _id;
+        name = _name;
+        price = _price;
+        imgURL = _imgURL;
+        description = _description;
+        count = _count;
+    }
+
     public Item (int _id, String _brand, String _name, int _price, int _imgURL, String _category)
     {
         id = _id;
@@ -41,6 +51,18 @@ public class Item implements Comparable<Item>
         imgURL = _imgURL;
         count = _count;
         category = _category;
+    }
+
+    public Item (int _id, String _brand, String _name, int _price, int _imgURL, String _count, String _category, String _description)
+    {
+        id = _id;
+        brand = _brand;
+        name = _name;
+        price = _price;
+        imgURL = _imgURL;
+        count = _count;
+        category = _category;
+        description = _description;
     }
 
     public int getId (){

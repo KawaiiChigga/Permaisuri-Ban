@@ -21,13 +21,13 @@ public class CartDeleteDialogFragment extends DialogFragment {
 
     String cartItemName;
     int imgUrl;
-    int position;
+    int id;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cartItemName = getArguments().getString("name");
         imgUrl = getArguments().getInt("imgUrl");
-        position = getArguments().getInt("position");
+        id = getArguments().getInt("itemId");
     }
 
     @Override
@@ -57,10 +57,9 @@ public class CartDeleteDialogFragment extends DialogFragment {
         btnDelDialogYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Hapus", Toast.LENGTH_SHORT).show();
                 dismiss();
                 if(frag != null){
-                    frag.deleteItem(position);
+                    frag.deleteItem(id);
                 }
             }
         });

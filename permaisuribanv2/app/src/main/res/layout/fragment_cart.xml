@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="216dp"
-        android:paddingBottom="105dp">
+        android:paddingBottom="105dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="193dp">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="Rp. 15.540.000" />
+            android:text="Rp. -" />
 
         <Button
             android:id="@+id/btnCartPayment"

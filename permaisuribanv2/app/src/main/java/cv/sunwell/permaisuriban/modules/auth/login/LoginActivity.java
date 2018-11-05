@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,7 +16,7 @@ import com.google.gson.JsonObject;
 
 import cv.sunwell.permaisuriban.R;
 import cv.sunwell.permaisuriban.modules.auth.AuthActivity;
-import cv.sunwell.permaisuriban.modules.main.StringConverter;
+import cv.sunwell.permaisuriban.modules.main.ExtraUtility;
 import cv.sunwell.permaisuriban.modules.main.MainActivity;
 import cv.sunwell.permaisuriban.networking.ApiInterface;
 import cv.sunwell.permaisuriban.networking.ApiUtils;
@@ -74,7 +73,7 @@ public class LoginActivity extends AppCompatActivity
                  if (response.body().get("success").getAsBoolean()) {
                      Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                      intent.putExtra("frgToLoad", 0);
-                     saveCredentials(StringConverter.removeQuotation(response.body().get("remember_token").toString()), response.body().get("userid").getAsInt());
+                     saveCredentials(ExtraUtility.removeQuotation(response.body().get("remember_token").toString()), response.body().get("userid").getAsInt());
                      startActivity(intent);
                      loading.dismiss();
                      finish();

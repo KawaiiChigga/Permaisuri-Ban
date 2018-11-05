@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        app:cardCornerRadius="5dp">
+            app:cardCornerRadius="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -62,31 +62,23 @@
                 android:textColor="#FFFFFF"
                 android:textSize="8dp" />
 
-            <ImageView
-                android:id="@+id/ivCartMinus"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignStart="@+id/tvCartItemPrice"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_decrease" />
-
             <TextView
                 android:id="@+id/tvCartItemCount"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="101dp"
+                android:text="1" />
+
+            <TextView
+                android:id="@+id/tvCartItemCountPiece"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="131dp"
-                android:text="1" />
-
-            <ImageView
-                android:id="@+id/ivCartPlus"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="153dp"
-                app:srcCompat="@drawable/ic_increase" />
+                android:layout_marginStart="140dp"
+                android:text="pc(s)" />
 
             <TextView
                 android:id="@+id/tvCartSubtotal"

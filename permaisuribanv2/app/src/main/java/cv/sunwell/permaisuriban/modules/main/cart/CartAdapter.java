@@ -44,14 +44,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder>
     public void onBindViewHolder (@NonNull MyViewHolder holder, int position)
     {
         holder.cartFragment = cartFragmente;
-        holder.itemPosition = position;
+        holder.itemId = alCartItem.get(position).getId();
         int price, count, subtotal;
         price = alCartItem.get (position).getPrice ();
         count = Integer.parseInt(alCartItem.get (position).getCount ());
         subtotal = price * count;
-        Log.d ("LOG", "Price : " + price);
-        Log.d ("LOG", "Count : " + count);
-        Log.d ("LOG", "Subtotal : " + subtotal);
         holder.cartItemName = alCartItem.get (position).getName ();
         holder.imgUrl = alCartItem.get (position).getImgURL ();
         holder.tvCartItemName.setText (holder.cartItemName);
@@ -67,10 +64,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder>
         return alCartItem.size ();
     }
 
-    public void deleteCartItem(int position){
-        alCartItem.remove(position);
-        notifyDataSetChanged ();
-    }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
@@ -87,7 +80,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder>
         CartFragment cartFragment;
         String cartItemName;
         int imgUrl;
-        int itemPosition;
+        int itemId;
         public MyViewHolder (final View itemView)
         {
             super (itemView);
@@ -96,15 +89,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder>
             tvCartItemPrice = (TextView) itemView.findViewById (R.id.tvCartItemPrice);
             tvCartItemCount = (TextView) itemView.findViewById (R.id.tvCartItemCount);
             tvCartSubtotalNominal = (TextView) itemView.findViewById (R.id.tvCartSubtotalNominal);
-            ivCartMinus = (ImageView) itemView.findViewById (R.id.ivCartMinus);
-            ivCartPlus = (ImageView) itemView.findViewById (R.id.ivCartPlus);
             ivCartItemImage = (ImageView) itemView.findViewById (R.id.ivCartItemImage);
             ivCartDelete = (Button) itemView.findViewById (R.id.ivCartDelete);
             ivCartDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //Toast.makeText(, "Clicked", Toast.LENGTH_SHORT).show();
-                    cartFragment.showDeleteDialog(cartItemName, imgUrl, itemPosition);
+                    cartFragment.showDeleteDialog(cartItemName, imgUrl, itemId);
                 }
             });
 

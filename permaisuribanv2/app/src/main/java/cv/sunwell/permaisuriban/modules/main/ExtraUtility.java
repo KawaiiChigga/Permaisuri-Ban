@@ -1,7 +1,7 @@
 package cv.sunwell.permaisuriban.modules.main;
 
-public class StringConverter {
-    public static void Converter(){
+public class ExtraUtility {
+    public static void check(){
 
     }
 
